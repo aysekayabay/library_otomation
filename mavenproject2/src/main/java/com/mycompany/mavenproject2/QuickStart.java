@@ -17,14 +17,14 @@ public class QuickStart {
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Registered");
-            MongoCollection<Document> collection = database.getCollection("users");
+            MongoCollection<Document> collection = database.getCollection("users2");
             MongoCursor<Document> cursor = collection.find().iterator();
             while (cursor.hasNext()) {
                 Document document = cursor.next();
                 System.out.println(document.toJson());
             }
 
-            Document doc = collection.find(eq("name", "İbrahim Şahin")).first();
+            Document doc = collection.find(eq("name", "Ezgi Sevi")).first();
             if (doc != null) {
                 System.out.println(doc.toJson());
             } else {

@@ -18,4 +18,5 @@
         <version>4.3.4</version>
       </dependency>
     </dependencies>
+    <name>Login_Register</name>
 </project>
