@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.mavenproject2;
 
 import com.mongodb.client.MongoClient;
@@ -10,6 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.awt.Color;
+import java.util.*;
 import org.bson.Document;
 
 /**
@@ -17,433 +14,14 @@ import org.bson.Document;
  * @author ayse
  */
 public class Menu extends javax.swing.JFrame {
-
-    static String userName = "";
+    static String[] rooms = new String[]{"Salon 1", "Salon 2", "Salon 3"};
+    static int[] rates = new int[]{2, 3, 7};
+    static StringBuilder userName = new StringBuilder("");
+    static StringBuilder libraryRate = new StringBuilder("");
     Color deskBaseColor = new Color(204, 204, 255);
     Color deskFilledColor = new Color(153, 0, 255);
     Color roomFilledColor = new Color(217, 166, 166);
     Color roomBaseColor = new Color(248, 226, 226);
-
-    public void fillDesk(int i) {
-        // TODO add your handling code here:
-        switch (i) {
-            case 1:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 2:
-                r1d1.setBackground(deskBaseColor);
-                r1d2.setBackground(deskFilledColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 3:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 4:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 5:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 6:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 7:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 8:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 9:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 10:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 11:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 12:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 13:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 14:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 15:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 16:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            case 17:
-                r1d1.setBackground(deskFilledColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-            default:
-                r1d1.setBackground(deskBaseColor);
-                r1d2.setBackground(deskBaseColor);
-                r1d3.setBackground(deskBaseColor);
-                r1d4.setBackground(deskBaseColor);
-                r1d5.setBackground(deskBaseColor);
-                r1d6.setBackground(deskBaseColor);
-                r1d7.setBackground(deskBaseColor);
-                r1d8.setBackground(deskBaseColor);
-                r1d9.setBackground(deskBaseColor);
-                r1d10.setBackground(deskBaseColor);
-                r1d11.setBackground(deskBaseColor);
-                r1d12.setBackground(deskBaseColor);
-                r1d13.setBackground(deskBaseColor);
-                r1d14.setBackground(deskBaseColor);
-                r1d15.setBackground(deskBaseColor);
-                r1d16.setBackground(deskBaseColor);
-                r1d17.setBackground(deskBaseColor);
-                r1d18.setBackground(deskBaseColor);
-                r1d19.setBackground(deskBaseColor);
-                r1d20.setBackground(deskBaseColor);
-                r1d21.setBackground(deskBaseColor);
-                break;
-        }
-
-    }
 
     public Menu() {
         initComponents();
@@ -473,22 +51,24 @@ public class Menu extends javax.swing.JFrame {
         rateTitle = new javax.swing.JLabel();
         rate = new javax.swing.JLabel();
         line = new javax.swing.JPanel();
-        name = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        rateLabel = new javax.swing.JLabel();
         seatPage = new javax.swing.JPanel();
         room_header7 = new javax.swing.JPanel();
-        jLabel65 = new javax.swing.JLabel();
-        jLabel66 = new javax.swing.JLabel();
+        room_name = new javax.swing.JLabel();
+        room_rate = new javax.swing.JLabel();
         jPanel45 = new javax.swing.JPanel();
         jLabel67 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jPanel92 = new javax.swing.JPanel();
+        selected_desk = new javax.swing.JLabel();
+        room1Button = new javax.swing.JPanel();
         jLabel110 = new javax.swing.JLabel();
-        jPanel93 = new javax.swing.JPanel();
+        room2Button = new javax.swing.JPanel();
         jLabel111 = new javax.swing.JLabel();
-        jPanel96 = new javax.swing.JPanel();
+        room3Button = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
+        room_rate1 = new javax.swing.JLabel();
         room = new javax.swing.JPanel();
         seat_area1 = new javax.swing.JPanel();
         r1d7 = new javax.swing.JPanel();
@@ -533,16 +113,16 @@ public class Menu extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         r1d21 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
-        jPanel38 = new javax.swing.JPanel();
-        jPanel36 = new javax.swing.JPanel();
+        window1 = new javax.swing.JPanel();
+        door1 = new javax.swing.JPanel();
         seat_area2 = new javax.swing.JPanel();
-        jPanel46 = new javax.swing.JPanel();
+        r2d7 = new javax.swing.JPanel();
         jLabel68 = new javax.swing.JLabel();
-        jPanel47 = new javax.swing.JPanel();
+        r2d5 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        jPanel48 = new javax.swing.JPanel();
+        r2d4 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
-        jPanel49 = new javax.swing.JPanel();
+        r2d3 = new javax.swing.JPanel();
         jLabel71 = new javax.swing.JLabel();
         jPanel50 = new javax.swing.JPanel();
         jLabel72 = new javax.swing.JLabel();
@@ -626,14 +206,14 @@ public class Menu extends javax.swing.JFrame {
         jPanel90 = new javax.swing.JPanel();
         jPanel91 = new javax.swing.JPanel();
         breaktimePage = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        takeBreakButton = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        endBreakButton = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        remaining_break_count_label = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        credit_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -764,12 +344,13 @@ public class Menu extends javax.swing.JFrame {
         rateBar.setBackground(new java.awt.Color(204, 204, 255));
         rateBar.setForeground(new java.awt.Color(153, 0, 255));
         rateBar.setValue(60);
+        rateBar.setValue(Integer.parseInt(libraryRate.toString()));
 
         rateTitle.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         rateTitle.setText("Çalışma Alanlarındaki Doluluk Oranı");
 
         rate.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        rate.setText("%75");
+        rate.setText("%");
 
         line.setBackground(new java.awt.Color(204, 204, 255));
         line.setPreferredSize(new java.awt.Dimension(281, 4));
@@ -785,8 +366,13 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
-        name.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        name.setText("\"");
+        nameLabel.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
+        nameLabel.setText("A");
+        nameLabel.setText(userName.toString());
+
+        rateLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        rateLabel.setText("75");
+        rateLabel.setText(libraryRate.toString());
 
         javax.swing.GroupLayout homePageLayout = new javax.swing.GroupLayout(homePage);
         homePage.setLayout(homePageLayout);
@@ -798,21 +384,23 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(homePageLayout.createSequentialGroup()
                         .addComponent(welcomeTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(nameLabel)
+                        .addContainerGap(334, Short.MAX_VALUE))
                     .addGroup(homePageLayout.createSequentialGroup()
                         .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(line, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                             .addGroup(homePageLayout.createSequentialGroup()
-                                .addGap(0, 181, Short.MAX_VALUE)
-                                .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(logOutButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(homePageLayout.createSequentialGroup()
                                         .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(rateTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(rateBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(rateBar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rate)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rate)))))
+                                        .addComponent(rateLabel)))))
                         .addGap(24, 24, 24))))
         );
         homePageLayout.setVerticalGroup(
@@ -823,7 +411,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(welcomeTitle)
-                    .addComponent(name))
+                    .addComponent(nameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
@@ -832,7 +420,9 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(rateTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rateBar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
 
@@ -844,11 +434,11 @@ public class Menu extends javax.swing.JFrame {
         room_header7.setBackground(new java.awt.Color(255, 255, 255));
         room_header7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel65.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel65.setText("EEF Salonu");
+        room_name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        room_name.setText("Salon 1");
 
-        jLabel66.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jLabel66.setText("0/21");
+        room_rate.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        room_rate.setText("0");
 
         jPanel45.setBackground(new java.awt.Color(153, 0, 255));
         jPanel45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -879,13 +469,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel42.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel42.setText("Seçtiğin masa:");
 
-        jLabel43.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel43.setText("-1");
+        selected_desk.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        selected_desk.setText("-1");
 
-        jPanel92.setBackground(new java.awt.Color(217, 166, 166));
-        jPanel92.addMouseListener(new java.awt.event.MouseAdapter() {
+        room1Button.setBackground(new java.awt.Color(217, 166, 166));
+        room1Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel92MouseClicked(evt);
+                room1ButtonMouseClicked(evt);
             }
         });
 
@@ -893,27 +483,27 @@ public class Menu extends javax.swing.JFrame {
         jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel110.setText("1");
 
-        javax.swing.GroupLayout jPanel92Layout = new javax.swing.GroupLayout(jPanel92);
-        jPanel92.setLayout(jPanel92Layout);
-        jPanel92Layout.setHorizontalGroup(
-            jPanel92Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel92Layout.createSequentialGroup()
+        javax.swing.GroupLayout room1ButtonLayout = new javax.swing.GroupLayout(room1Button);
+        room1Button.setLayout(room1ButtonLayout);
+        room1ButtonLayout.setHorizontalGroup(
+            room1ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room1ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel110, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel92Layout.setVerticalGroup(
-            jPanel92Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel92Layout.createSequentialGroup()
+        room1ButtonLayout.setVerticalGroup(
+            room1ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(room1ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel110, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel93.setBackground(new java.awt.Color(248, 226, 226));
-        jPanel93.addMouseListener(new java.awt.event.MouseAdapter() {
+        room2Button.setBackground(new java.awt.Color(248, 226, 226));
+        room2Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel93MouseClicked(evt);
+                room2ButtonMouseClicked(evt);
             }
         });
 
@@ -921,27 +511,27 @@ public class Menu extends javax.swing.JFrame {
         jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel111.setText("2");
 
-        javax.swing.GroupLayout jPanel93Layout = new javax.swing.GroupLayout(jPanel93);
-        jPanel93.setLayout(jPanel93Layout);
-        jPanel93Layout.setHorizontalGroup(
-            jPanel93Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel93Layout.createSequentialGroup()
+        javax.swing.GroupLayout room2ButtonLayout = new javax.swing.GroupLayout(room2Button);
+        room2Button.setLayout(room2ButtonLayout);
+        room2ButtonLayout.setHorizontalGroup(
+            room2ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room2ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel111, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel93Layout.setVerticalGroup(
-            jPanel93Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel93Layout.createSequentialGroup()
+        room2ButtonLayout.setVerticalGroup(
+            room2ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(room2ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel111, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel96.setBackground(new java.awt.Color(248, 226, 226));
-        jPanel96.addMouseListener(new java.awt.event.MouseAdapter() {
+        room3Button.setBackground(new java.awt.Color(248, 226, 226));
+        room3Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel96MouseClicked(evt);
+                room3ButtonMouseClicked(evt);
             }
         });
 
@@ -949,18 +539,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel114.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel114.setText("3");
 
-        javax.swing.GroupLayout jPanel96Layout = new javax.swing.GroupLayout(jPanel96);
-        jPanel96.setLayout(jPanel96Layout);
-        jPanel96Layout.setHorizontalGroup(
-            jPanel96Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel96Layout.createSequentialGroup()
+        javax.swing.GroupLayout room3ButtonLayout = new javax.swing.GroupLayout(room3Button);
+        room3Button.setLayout(room3ButtonLayout);
+        room3ButtonLayout.setHorizontalGroup(
+            room3ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room3ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel96Layout.setVerticalGroup(
-            jPanel96Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel96Layout.createSequentialGroup()
+        room3ButtonLayout.setVerticalGroup(
+            room3ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(room3ButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel114, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -968,6 +558,9 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel44.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel44.setText("Salonlar");
+
+        room_rate1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        room_rate1.setText("/ 21");
 
         javax.swing.GroupLayout room_header7Layout = new javax.swing.GroupLayout(room_header7);
         room_header7.setLayout(room_header7Layout);
@@ -977,14 +570,16 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(room_header7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(room_header7Layout.createSequentialGroup()
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(room_rate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(room_rate1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(room_header7Layout.createSequentialGroup()
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(selected_desk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -992,11 +587,11 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(146, 146, 146)
                 .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel93, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel96, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(room3Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         room_header7Layout.setVerticalGroup(
@@ -1004,18 +599,20 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_header7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(room_header7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel96, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel93, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel92, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(room3Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(room_header7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_header7Layout.createSequentialGroup()
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(room_header7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(room_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(room_rate1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_header7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel43)
+                        .addComponent(selected_desk)
                         .addComponent(jLabel42))
                     .addComponent(jPanel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
@@ -1246,7 +843,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        r1d8.setBackground(new java.awt.Color(153, 0, 255));
+        r1d8.setBackground(new java.awt.Color(204, 204, 255));
         r1d8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 r1d8MouseClicked(evt);
@@ -1597,30 +1194,30 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel38.setBackground(new java.awt.Color(230, 248, 248));
+        window1.setBackground(new java.awt.Color(230, 248, 248));
 
-        javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
-        jPanel38.setLayout(jPanel38Layout);
-        jPanel38Layout.setHorizontalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout window1Layout = new javax.swing.GroupLayout(window1);
+        window1.setLayout(window1Layout);
+        window1Layout.setHorizontalGroup(
+            window1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel38Layout.setVerticalGroup(
-            jPanel38Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        window1Layout.setVerticalGroup(
+            window1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel36.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel36.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        door1.setBackground(new java.awt.Color(153, 153, 153));
+        door1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout jPanel36Layout = new javax.swing.GroupLayout(jPanel36);
-        jPanel36.setLayout(jPanel36Layout);
-        jPanel36Layout.setHorizontalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout door1Layout = new javax.swing.GroupLayout(door1);
+        door1.setLayout(door1Layout);
+        door1Layout.setHorizontalGroup(
+            door1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 68, Short.MAX_VALUE)
         );
-        jPanel36Layout.setVerticalGroup(
-            jPanel36Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        door1Layout.setVerticalGroup(
+            door1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1629,7 +1226,7 @@ public class Menu extends javax.swing.JFrame {
         seat_area1Layout.setHorizontalGroup(
             seat_area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(seat_area1Layout.createSequentialGroup()
-                .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(window1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(seat_area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(seat_area1Layout.createSequentialGroup()
@@ -1674,15 +1271,15 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(r1d6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(seat_area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(door1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(r1d7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         seat_area1Layout.setVerticalGroup(
             seat_area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(window1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(seat_area1Layout.createSequentialGroup()
-                .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(door1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(seat_area1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(r1d7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1717,109 +1314,109 @@ public class Menu extends javax.swing.JFrame {
 
         seat_area2.setBackground(new java.awt.Color(242, 233, 233));
 
-        jPanel46.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel46.addMouseListener(new java.awt.event.MouseAdapter() {
+        r2d7.setBackground(new java.awt.Color(204, 204, 255));
+        r2d7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel46MouseClicked(evt);
+                r2d7MouseClicked(evt);
             }
         });
 
         jLabel68.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel68.setText("7");
 
-        javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
-        jPanel46.setLayout(jPanel46Layout);
-        jPanel46Layout.setHorizontalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel46Layout.createSequentialGroup()
+        javax.swing.GroupLayout r2d7Layout = new javax.swing.GroupLayout(r2d7);
+        r2d7.setLayout(r2d7Layout);
+        r2d7Layout.setHorizontalGroup(
+            r2d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, r2d7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel46Layout.setVerticalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel46Layout.createSequentialGroup()
+        r2d7Layout.setVerticalGroup(
+            r2d7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(r2d7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel47.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel47.addMouseListener(new java.awt.event.MouseAdapter() {
+        r2d5.setBackground(new java.awt.Color(204, 204, 255));
+        r2d5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel47MouseClicked(evt);
+                r2d5MouseClicked(evt);
             }
         });
 
         jLabel69.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel69.setText("5");
 
-        javax.swing.GroupLayout jPanel47Layout = new javax.swing.GroupLayout(jPanel47);
-        jPanel47.setLayout(jPanel47Layout);
-        jPanel47Layout.setHorizontalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel47Layout.createSequentialGroup()
+        javax.swing.GroupLayout r2d5Layout = new javax.swing.GroupLayout(r2d5);
+        r2d5.setLayout(r2d5Layout);
+        r2d5Layout.setHorizontalGroup(
+            r2d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, r2d5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel47Layout.setVerticalGroup(
-            jPanel47Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel47Layout.createSequentialGroup()
+        r2d5Layout.setVerticalGroup(
+            r2d5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(r2d5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel69, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel48.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel48.addMouseListener(new java.awt.event.MouseAdapter() {
+        r2d4.setBackground(new java.awt.Color(204, 204, 255));
+        r2d4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel48MouseClicked(evt);
+                r2d4MouseClicked(evt);
             }
         });
 
         jLabel70.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel70.setText("4");
 
-        javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
-        jPanel48.setLayout(jPanel48Layout);
-        jPanel48Layout.setHorizontalGroup(
-            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel48Layout.createSequentialGroup()
+        javax.swing.GroupLayout r2d4Layout = new javax.swing.GroupLayout(r2d4);
+        r2d4.setLayout(r2d4Layout);
+        r2d4Layout.setHorizontalGroup(
+            r2d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, r2d4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel70, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel48Layout.setVerticalGroup(
-            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel48Layout.createSequentialGroup()
+        r2d4Layout.setVerticalGroup(
+            r2d4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(r2d4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel70, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel49.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel49.addMouseListener(new java.awt.event.MouseAdapter() {
+        r2d3.setBackground(new java.awt.Color(204, 204, 255));
+        r2d3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel49MouseClicked(evt);
+                r2d3MouseClicked(evt);
             }
         });
 
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel71.setText("3");
 
-        javax.swing.GroupLayout jPanel49Layout = new javax.swing.GroupLayout(jPanel49);
-        jPanel49.setLayout(jPanel49Layout);
-        jPanel49Layout.setHorizontalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel49Layout.createSequentialGroup()
+        javax.swing.GroupLayout r2d3Layout = new javax.swing.GroupLayout(r2d3);
+        r2d3.setLayout(r2d3Layout);
+        r2d3Layout.setHorizontalGroup(
+            r2d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, r2d3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel71, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel49Layout.setVerticalGroup(
-            jPanel49Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel49Layout.createSequentialGroup()
+        r2d3Layout.setVerticalGroup(
+            r2d3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(r2d3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel71, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
@@ -2353,17 +1950,17 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(r2d3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(r2d4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(r2d5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(seat_area2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(r2d7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
         seat_area2Layout.setVerticalGroup(
@@ -2372,11 +1969,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jPanel68, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(seat_area2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r2d7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel51, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel47, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r2d5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r2d4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r2d3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel52, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel50, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3109,25 +2706,25 @@ public class Menu extends javax.swing.JFrame {
 
         breaktimePage.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        takeBreakButton.setBackground(new java.awt.Color(204, 204, 255));
+        takeBreakButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel5.setBackground(new java.awt.Color(204, 204, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mola Al");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout takeBreakButtonLayout = new javax.swing.GroupLayout(takeBreakButton);
+        takeBreakButton.setLayout(takeBreakButtonLayout);
+        takeBreakButtonLayout.setHorizontalGroup(
+            takeBreakButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(takeBreakButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        takeBreakButtonLayout.setVerticalGroup(
+            takeBreakButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(takeBreakButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3135,25 +2732,25 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        endBreakButton.setBackground(new java.awt.Color(204, 204, 255));
+        endBreakButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Molayı Bitir");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout endBreakButtonLayout = new javax.swing.GroupLayout(endBreakButton);
+        endBreakButton.setLayout(endBreakButtonLayout);
+        endBreakButtonLayout.setHorizontalGroup(
+            endBreakButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, endBreakButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+        endBreakButtonLayout.setVerticalGroup(
+            endBreakButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, endBreakButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
@@ -3162,14 +2759,14 @@ public class Menu extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel8.setText("Kalan Mola Hakkı:");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel1.setText("3");
+        remaining_break_count_label.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        remaining_break_count_label.setText("3");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel9.setText("Kredi:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        jLabel2.setText("10");
+        credit_label.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        credit_label.setText("10");
 
         javax.swing.GroupLayout breaktimePageLayout = new javax.swing.GroupLayout(breaktimePage);
         breaktimePage.setLayout(breaktimePageLayout);
@@ -3179,9 +2776,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(breaktimePageLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(takeBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(endBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(breaktimePageLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3189,8 +2786,8 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(credit_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(remaining_break_count_label, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(62, 62, 62))
         );
         breaktimePageLayout.setVerticalGroup(
@@ -3199,15 +2796,15 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel1))
+                    .addComponent(remaining_break_count_label))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(credit_label)
                     .addComponent(jLabel9))
                 .addGap(98, 98, 98)
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(endBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(takeBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
 
@@ -3267,11 +2864,51 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void r1d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d21MouseClicked
-        // TODO add your handling code here:
+        r1d1.setBackground(deskBaseColor);
+        r1d2.setBackground(deskBaseColor);
+        r1d3.setBackground(deskBaseColor);
+        r1d4.setBackground(deskBaseColor);
+        r1d5.setBackground(deskBaseColor);
+        r1d6.setBackground(deskBaseColor);
+        r1d7.setBackground(deskBaseColor);
+        r1d8.setBackground(deskBaseColor);
+        r1d9.setBackground(deskBaseColor);
+        r1d10.setBackground(deskBaseColor);
+        r1d11.setBackground(deskBaseColor);
+        r1d12.setBackground(deskBaseColor);
+        r1d13.setBackground(deskBaseColor);
+        r1d14.setBackground(deskBaseColor);
+        r1d15.setBackground(deskBaseColor);
+        r1d16.setBackground(deskBaseColor);
+        r1d17.setBackground(deskBaseColor);
+        r1d18.setBackground(deskBaseColor);
+        r1d19.setBackground(deskBaseColor);
+        r1d20.setBackground(deskBaseColor);
+        r1d21.setBackground(deskFilledColor);
     }//GEN-LAST:event_r1d21MouseClicked
 
     private void r1d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d20MouseClicked
-        // TODO add your handling code here:
+        r1d1.setBackground(deskBaseColor);
+        r1d2.setBackground(deskBaseColor);
+        r1d3.setBackground(deskBaseColor);
+        r1d4.setBackground(deskBaseColor);
+        r1d5.setBackground(deskBaseColor);
+        r1d6.setBackground(deskBaseColor);
+        r1d7.setBackground(deskBaseColor);
+        r1d8.setBackground(deskBaseColor);
+        r1d9.setBackground(deskBaseColor);
+        r1d10.setBackground(deskBaseColor);
+        r1d11.setBackground(deskBaseColor);
+        r1d12.setBackground(deskBaseColor);
+        r1d13.setBackground(deskBaseColor);
+        r1d14.setBackground(deskBaseColor);
+        r1d15.setBackground(deskBaseColor);
+        r1d16.setBackground(deskBaseColor);
+        r1d17.setBackground(deskBaseColor);
+        r1d18.setBackground(deskBaseColor);
+        r1d19.setBackground(deskBaseColor);
+        r1d20.setBackground(deskFilledColor);
+        r1d21.setBackground(deskBaseColor);
     }//GEN-LAST:event_r1d20MouseClicked
 
     private void r1d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d19MouseClicked
@@ -3284,7 +2921,7 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
@@ -3295,7 +2932,7 @@ public class Menu extends javax.swing.JFrame {
         r1d16.setBackground(deskBaseColor);
         r1d17.setBackground(deskBaseColor);
         r1d18.setBackground(deskBaseColor);
-        r1d19.setBackground(deskBaseColor);
+        r1d19.setBackground(deskFilledColor);
         r1d20.setBackground(deskBaseColor);
         r1d21.setBackground(deskBaseColor);
     }//GEN-LAST:event_r1d19MouseClicked
@@ -3310,7 +2947,7 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
@@ -3320,7 +2957,7 @@ public class Menu extends javax.swing.JFrame {
         r1d15.setBackground(deskBaseColor);
         r1d16.setBackground(deskBaseColor);
         r1d17.setBackground(deskBaseColor);
-        r1d18.setBackground(deskBaseColor);
+        r1d18.setBackground(deskFilledColor);
         r1d19.setBackground(deskBaseColor);
         r1d20.setBackground(deskBaseColor);
         r1d21.setBackground(deskBaseColor);
@@ -3336,7 +2973,7 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
@@ -3345,7 +2982,7 @@ public class Menu extends javax.swing.JFrame {
         r1d14.setBackground(deskBaseColor);
         r1d15.setBackground(deskBaseColor);
         r1d16.setBackground(deskBaseColor);
-        r1d17.setBackground(deskBaseColor);
+        r1d17.setBackground(deskFilledColor);
         r1d18.setBackground(deskBaseColor);
         r1d19.setBackground(deskBaseColor);
         r1d20.setBackground(deskBaseColor);
@@ -3362,7 +2999,7 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
@@ -3370,7 +3007,7 @@ public class Menu extends javax.swing.JFrame {
         r1d13.setBackground(deskBaseColor);
         r1d14.setBackground(deskBaseColor);
         r1d15.setBackground(deskBaseColor);
-        r1d16.setBackground(deskBaseColor);
+        r1d16.setBackground(deskFilledColor);
         r1d17.setBackground(deskBaseColor);
         r1d18.setBackground(deskBaseColor);
         r1d19.setBackground(deskBaseColor);
@@ -3388,14 +3025,14 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
         r1d12.setBackground(deskBaseColor);
         r1d13.setBackground(deskBaseColor);
         r1d14.setBackground(deskBaseColor);
-        r1d15.setBackground(deskBaseColor);
+        r1d15.setBackground(deskFilledColor);
         r1d16.setBackground(deskBaseColor);
         r1d17.setBackground(deskBaseColor);
         r1d18.setBackground(deskBaseColor);
@@ -3414,8 +3051,8 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
-        r1d9.setBackground(deskBaseColor);
+        r1d8.setBackground(deskBaseColor);
+        r1d9.setBackground(deskFilledColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
         r1d12.setBackground(deskBaseColor);
@@ -3440,11 +3077,11 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
-        r1d12.setBackground(deskBaseColor);
+        r1d12.setBackground(deskFilledColor);
         r1d13.setBackground(deskBaseColor);
         r1d14.setBackground(deskBaseColor);
         r1d15.setBackground(deskBaseColor);
@@ -3466,12 +3103,12 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
         r1d11.setBackground(deskBaseColor);
         r1d12.setBackground(deskBaseColor);
-        r1d13.setBackground(deskBaseColor);
+        r1d13.setBackground(deskFilledColor);
         r1d14.setBackground(deskBaseColor);
         r1d15.setBackground(deskBaseColor);
         r1d16.setBackground(deskBaseColor);
@@ -3492,10 +3129,10 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
         r1d10.setBackground(deskBaseColor);
-        r1d11.setBackground(deskBaseColor);
+        r1d11.setBackground(deskFilledColor);
         r1d12.setBackground(deskBaseColor);
         r1d13.setBackground(deskBaseColor);
         r1d14.setBackground(deskBaseColor);
@@ -3518,9 +3155,9 @@ public class Menu extends javax.swing.JFrame {
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
+        r1d8.setBackground(deskBaseColor);
         r1d9.setBackground(deskBaseColor);
-        r1d10.setBackground(deskBaseColor);
+        r1d10.setBackground(deskFilledColor);
         r1d11.setBackground(deskBaseColor);
         r1d12.setBackground(deskBaseColor);
         r1d13.setBackground(deskBaseColor);
@@ -3564,7 +3201,31 @@ public class Menu extends javax.swing.JFrame {
         r1d1.setBackground(deskBaseColor);
         r1d2.setBackground(deskBaseColor);
         r1d3.setBackground(deskBaseColor);
-        r1d4.setBackground(deskFilledColor);
+        r1d4.setBackground(deskBaseColor);
+        r1d5.setBackground(deskBaseColor);
+        r1d6.setBackground(deskBaseColor);
+        r1d7.setBackground(deskBaseColor);
+        r1d8.setBackground(deskBaseColor);
+        r1d9.setBackground(deskBaseColor);
+        r1d10.setBackground(deskBaseColor);
+        r1d11.setBackground(deskBaseColor);
+        r1d12.setBackground(deskBaseColor);
+        r1d13.setBackground(deskBaseColor);
+        r1d14.setBackground(deskFilledColor);
+        r1d15.setBackground(deskBaseColor);
+        r1d16.setBackground(deskBaseColor);
+        r1d17.setBackground(deskBaseColor);
+        r1d18.setBackground(deskBaseColor);
+        r1d19.setBackground(deskBaseColor);
+        r1d20.setBackground(deskBaseColor);
+        r1d21.setBackground(deskBaseColor);
+    }//GEN-LAST:event_r1d14MouseClicked
+
+    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
+        r1d1.setBackground(deskBaseColor);
+        r1d2.setBackground(deskFilledColor);
+        r1d3.setBackground(deskBaseColor);
+        r1d4.setBackground(deskBaseColor);
         r1d5.setBackground(deskBaseColor);
         r1d6.setBackground(deskBaseColor);
         r1d7.setBackground(deskBaseColor);
@@ -3582,10 +3243,6 @@ public class Menu extends javax.swing.JFrame {
         r1d19.setBackground(deskBaseColor);
         r1d20.setBackground(deskBaseColor);
         r1d21.setBackground(deskBaseColor);
-    }//GEN-LAST:event_r1d14MouseClicked
-
-    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
-        fillDesk(2);
     }//GEN-LAST:event_r1d2MouseClicked
 
     private void r1d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d6MouseClicked
@@ -3614,7 +3271,27 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_r1d6MouseClicked
 
     private void r1d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d1MouseClicked
-        fillDesk(1);
+        r1d1.setBackground(deskFilledColor);
+        r1d2.setBackground(deskBaseColor);
+        r1d3.setBackground(deskBaseColor);
+        r1d4.setBackground(deskBaseColor);
+        r1d5.setBackground(deskBaseColor);
+        r1d6.setBackground(deskBaseColor);
+        r1d7.setBackground(deskBaseColor);
+        r1d8.setBackground(deskBaseColor);
+        r1d9.setBackground(deskBaseColor);
+        r1d10.setBackground(deskBaseColor);
+        r1d11.setBackground(deskBaseColor);
+        r1d12.setBackground(deskBaseColor);
+        r1d13.setBackground(deskBaseColor);
+        r1d14.setBackground(deskBaseColor);
+        r1d15.setBackground(deskBaseColor);
+        r1d16.setBackground(deskBaseColor);
+        r1d17.setBackground(deskBaseColor);
+        r1d18.setBackground(deskBaseColor);
+        r1d19.setBackground(deskBaseColor);
+        r1d20.setBackground(deskBaseColor);
+        r1d21.setBackground(deskBaseColor);
     }//GEN-LAST:event_r1d1MouseClicked
 
     private void r1d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d3MouseClicked
@@ -3717,22 +3394,22 @@ public class Menu extends javax.swing.JFrame {
         r1d21.setBackground(deskBaseColor);
     }//GEN-LAST:event_r1d7MouseClicked
 
-    private void jPanel46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel46MouseClicked
+    private void r2d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d7MouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jPanel46MouseClicked
+    }//GEN-LAST:event_r2d7MouseClicked
 
-    private void jPanel47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel47MouseClicked
+    private void r2d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d5MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel47MouseClicked
+    }//GEN-LAST:event_r2d5MouseClicked
 
-    private void jPanel48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel48MouseClicked
+    private void r2d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d4MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel48MouseClicked
+    }//GEN-LAST:event_r2d4MouseClicked
 
-    private void jPanel49MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel49MouseClicked
+    private void r2d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d3MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel49MouseClicked
+    }//GEN-LAST:event_r2d3MouseClicked
 
     private void jPanel50MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel50MouseClicked
         // TODO add your handling code here:
@@ -3886,22 +3563,40 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel89MouseClicked
 
-    private void jPanel93MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel93MouseClicked
-        jPanel93.setBackground(roomFilledColor);
-        jPanel92.setBackground(roomBaseColor);
-        jPanel96.setBackground(roomBaseColor);
-    }//GEN-LAST:event_jPanel93MouseClicked
+    private void room2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room2ButtonMouseClicked
+        room2Button.setBackground(roomFilledColor);
+        room1Button.setBackground(roomBaseColor);
+        room3Button.setBackground(roomBaseColor);
+        seat_area1.setVisible(false);
+        seat_area2.setVisible(true);
+        seat_area3.setVisible(false);
+        room_name.setText(rooms[1]);
+        room_rate.setText(String.valueOf(rates[1]));
 
-    private void jPanel92MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel92MouseClicked
-        jPanel93.setBackground(roomBaseColor);
-        jPanel92.setBackground(roomFilledColor);
-        jPanel96.setBackground(roomBaseColor);    }//GEN-LAST:event_jPanel92MouseClicked
 
-    private void jPanel96MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel96MouseClicked
-        jPanel93.setBackground(roomBaseColor);
-        jPanel92.setBackground(roomBaseColor);
-        jPanel96.setBackground(roomFilledColor);
-    }//GEN-LAST:event_jPanel96MouseClicked
+    }//GEN-LAST:event_room2ButtonMouseClicked
+
+    private void room1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room1ButtonMouseClicked
+        room2Button.setBackground(roomBaseColor);
+        room1Button.setBackground(roomFilledColor);
+        seat_area1.setVisible(true);
+        seat_area2.setVisible(false);
+        seat_area3.setVisible(false);
+        room_name.setText(rooms[0]);
+        room_rate.setText(String.valueOf(rates[0]));
+        room3Button.setBackground(roomBaseColor);    }//GEN-LAST:event_room1ButtonMouseClicked
+
+    private void room3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room3ButtonMouseClicked
+        room2Button.setBackground(roomBaseColor);
+        room1Button.setBackground(roomBaseColor);
+        room3Button.setBackground(roomFilledColor);
+        seat_area1.setVisible(false);
+        seat_area2.setVisible(false);
+        seat_area3.setVisible(true);
+        room_name.setText(rooms[2]);
+        room_rate.setText(String.valueOf(rates[2]));
+
+    }//GEN-LAST:event_room3ButtonMouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
@@ -3909,20 +3604,38 @@ public class Menu extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         String fakeEmail = "ibrahim2001sahin@hotmail.com";
+        int userCount = 0;
+        int deskCount = 0;
+        Document userDocument = null;
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
-            MongoCollection<Document> collection = database.getCollection("users");
-            Document document = collection.find(Filters.eq("email", fakeEmail)).first();
-            if (document != null) {
-                System.out.println(document.toJson());
-                userName = document.getString("name");
-            } else {
-                userName = "arabam";
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+            userDocument = usersCollection.find(Filters.eq("email", fakeEmail)).first();
+            if (userDocument != null) {
+                userName.append(userDocument.getString("name"));
             }
+            MongoCollection<Document> roomsCollection = database.getCollection("rooms");
+            List<Document> roomList = roomsCollection.find().into(new ArrayList<Document>());
+            for (Document room : roomList) {
+                System.out.println(room.toJson());
+                userCount = userCount + room.getInteger("current_num");
+                deskCount = deskCount + room.getInteger("desk_num");
+            }
+            if (deskCount != 0) {
+                int realRate = 0;
+                System.out.println(userCount);
+                System.out.println(deskCount);
+                realRate =100 *userCount / deskCount;
+                System.out.println(realRate);
+                libraryRate.append(realRate);
+            }
+
         }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
+
             }
         });
     }
@@ -3932,10 +3645,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel breaktime;
     private javax.swing.JPanel breaktimePage;
     private javax.swing.JLabel breaktimeTitle;
+    private javax.swing.JLabel credit_label;
+    private javax.swing.JPanel door1;
+    private javax.swing.JPanel endBreakButton;
     private javax.swing.JPanel home;
     private javax.swing.JPanel homePage;
     private javax.swing.JLabel homeTitle;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
@@ -3950,19 +3665,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel112;
-    private javax.swing.JLabel jLabel113;
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -3970,10 +3678,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -3981,33 +3685,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
-    private javax.swing.JLabel jLabel64;
-    private javax.swing.JLabel jLabel65;
-    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
@@ -4044,30 +3724,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
-    private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel36;
-    private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
-    private javax.swing.JPanel jPanel43;
-    private javax.swing.JPanel jPanel44;
     private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel46;
-    private javax.swing.JPanel jPanel47;
-    private javax.swing.JPanel jPanel48;
-    private javax.swing.JPanel jPanel49;
     private javax.swing.JPanel jPanel50;
     private javax.swing.JPanel jPanel51;
     private javax.swing.JPanel jPanel52;
@@ -4110,15 +3767,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel89;
     private javax.swing.JPanel jPanel90;
     private javax.swing.JPanel jPanel91;
-    private javax.swing.JPanel jPanel92;
-    private javax.swing.JPanel jPanel93;
-    private javax.swing.JPanel jPanel94;
-    private javax.swing.JPanel jPanel95;
-    private javax.swing.JPanel jPanel96;
     private javax.swing.JPanel leftbar;
     private javax.swing.JPanel line;
     private javax.swing.JButton logOutButton;
-    private javax.swing.JLabel name;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel page;
     private javax.swing.JPanel r1d1;
     private javax.swing.JPanel r1d10;
@@ -4141,24 +3793,32 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel r1d7;
     private javax.swing.JPanel r1d8;
     private javax.swing.JPanel r1d9;
+    private javax.swing.JPanel r2d3;
+    private javax.swing.JPanel r2d4;
+    private javax.swing.JPanel r2d5;
+    private javax.swing.JPanel r2d7;
     private javax.swing.JLabel rate;
     private javax.swing.JProgressBar rateBar;
+    private javax.swing.JLabel rateLabel;
     private javax.swing.JLabel rateTitle;
+    private javax.swing.JLabel remaining_break_count_label;
     private javax.swing.JPanel room;
-    private javax.swing.JPanel room_header;
-    private javax.swing.JPanel room_header1;
-    private javax.swing.JPanel room_header2;
-    private javax.swing.JPanel room_header3;
-    private javax.swing.JPanel room_header4;
-    private javax.swing.JPanel room_header5;
-    private javax.swing.JPanel room_header6;
+    private javax.swing.JPanel room1Button;
+    private javax.swing.JPanel room2Button;
+    private javax.swing.JPanel room3Button;
     private javax.swing.JPanel room_header7;
+    private javax.swing.JLabel room_name;
+    private javax.swing.JLabel room_rate;
+    private javax.swing.JLabel room_rate1;
     private javax.swing.JPanel seat;
     private javax.swing.JPanel seatPage;
     private javax.swing.JLabel seatTitle;
     private javax.swing.JPanel seat_area1;
     private javax.swing.JPanel seat_area2;
     private javax.swing.JPanel seat_area3;
+    private javax.swing.JLabel selected_desk;
+    private javax.swing.JPanel takeBreakButton;
     private javax.swing.JLabel welcomeTitle;
+    private javax.swing.JPanel window1;
     // End of variables declaration//GEN-END:variables
 }

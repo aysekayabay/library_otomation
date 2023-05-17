@@ -13,7 +13,7 @@ import com.mongodb.client.MongoDatabase;
 public class QuickStart {
     public static void main( String[] args ) {
 
-        String uri = "mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority";
+        String uri = "mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Registered");
