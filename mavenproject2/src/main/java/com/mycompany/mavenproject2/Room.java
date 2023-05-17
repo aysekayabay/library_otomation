@@ -1,13 +1,18 @@
-package System;
+package com.mycompany.mavenproject2;
 
 
 public class Room {
-	private int current_num = 0;
-	private int desk_num = 3;
+	private int current_num;
+	private int desk_num;
 	private String name;
 	Desk desk[] = new Desk[3];
 	
-	
+	public Room(String name, int current_num, int desk_num) {
+		this.name = name;
+		this.current_num = current_num;
+		this.desk_num= desk_num;
+	}
+        
 	public Room(String name) {
 		
 		this.name = name;
@@ -41,7 +46,7 @@ public class Room {
 	public int getCurrent_num() {
 		return current_num;
 	}
-
+        
 	public void setCurrent_num(int x) {
 		current_num = current_num + x;
 	}

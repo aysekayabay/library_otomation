@@ -1,4 +1,4 @@
- package System;
+ package com.mycompany.mavenproject2;
 
 import java.util.Scanner;
 

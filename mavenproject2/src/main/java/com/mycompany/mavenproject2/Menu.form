@@ -403,13 +403,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="room" max="32767" attributes="0"/>
-                  <Component id="room_header7" max="32767" attributes="0"/>
+                  <Component id="room_header" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="room_header7" max="32767" attributes="0"/>
+                      <Component id="room_header" max="32767" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="room" min="-2" pref="304" max="-2" attributes="0"/>
                   </Group>
@@ -417,7 +417,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="room_header7">
+            <Container class="javax.swing.JPanel" name="room_header">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -505,6 +505,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Salon 1"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_name.setText(rooms[0].getName());"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="room_rate">
                   <Properties>
@@ -513,6 +516,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));"/>
+                  </AuxValues>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel45">
                   <Properties>
@@ -719,6 +725,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="/ 21"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_rate1.setText(&quot;/ &quot; +String.valueOf(rooms[0].getDesk_num()));"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1746,9 +1755,9 @@
                                       <Component id="jPanel53" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jPanel50" min="-2" max="-2" attributes="0"/>
+                                      <Component id="r2d1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel52" min="-2" max="-2" attributes="0"/>
+                                      <Component id="r2d2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="r2d3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1756,7 +1765,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="r2d5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel51" min="-2" max="-2" attributes="0"/>
+                                      <Component id="r2d6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jPanel68" min="-2" max="-2" attributes="0"/>
@@ -1775,12 +1784,12 @@
                               <EmptySpace pref="69" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="r2d7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel51" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="r2d6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="r2d5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="r2d4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="r2d3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel52" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPanel50" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="r2d2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="r2d1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -1965,14 +1974,14 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="jPanel50">
+                    <Container class="javax.swing.JPanel" name="r2d1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel50MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="r2d1MouseClicked"/>
                       </Events>
 
                       <Layout>
@@ -2004,14 +2013,14 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="jPanel51">
+                    <Container class="javax.swing.JPanel" name="r2d6">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel51MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="r2d6MouseClicked"/>
                       </Events>
 
                       <Layout>
@@ -2043,14 +2052,14 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="jPanel52">
+                    <Container class="javax.swing.JPanel" name="r2d2">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel52MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="r2d2MouseClicked"/>
                       </Events>
 
                       <Layout>
@@ -2737,7 +2746,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jPanel91" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jPanel69" min="-2" max="-2" attributes="0"/>
+                                          <Component id="r3d1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -2752,7 +2761,7 @@
                               <Component id="jPanel91" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="69" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel69" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="r3d1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel74" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel70" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel71" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -2786,14 +2795,14 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JPanel" name="jPanel69">
+                    <Container class="javax.swing.JPanel" name="r3d1">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel69MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="r3d1MouseClicked"/>
                       </Events>
 
                       <Layout>
