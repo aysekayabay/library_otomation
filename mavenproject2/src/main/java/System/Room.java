@@ -1,4 +1,4 @@
-package Sistem;
+package System;
 
 
 public class Room {
