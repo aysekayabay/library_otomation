@@ -141,7 +141,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel73 = new javax.swing.JLabel();
         r2d2 = new javax.swing.JPanel();
         jLabel74 = new javax.swing.JLabel();
-        jPanel53 = new javax.swing.JPanel();
+        r2d14 = new javax.swing.JPanel();
         jLabel75 = new javax.swing.JLabel();
         jPanel54 = new javax.swing.JPanel();
         jLabel76 = new javax.swing.JLabel();
@@ -1517,28 +1517,28 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel53.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel53.addMouseListener(new java.awt.event.MouseAdapter() {
+        r2d14.setBackground(new java.awt.Color(204, 204, 255));
+        r2d14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel53MouseClicked(evt);
+                r2d14MouseClicked(evt);
             }
         });
 
         jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel75.setText("14");
 
-        javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
-        jPanel53.setLayout(jPanel53Layout);
-        jPanel53Layout.setHorizontalGroup(
-            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel53Layout.createSequentialGroup()
+        javax.swing.GroupLayout r2d14Layout = new javax.swing.GroupLayout(r2d14);
+        r2d14.setLayout(r2d14Layout);
+        r2d14Layout.setHorizontalGroup(
+            r2d14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, r2d14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel53Layout.setVerticalGroup(
-            jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel53Layout.createSequentialGroup()
+        r2d14Layout.setVerticalGroup(
+            r2d14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(r2d14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel75, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
                 .addContainerGap())
@@ -1958,7 +1958,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(r2d14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(seat_area2Layout.createSequentialGroup()
                         .addComponent(r2d1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1992,7 +1992,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(r2d1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(seat_area2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel53, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(r2d14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel57, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3323,7 +3323,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_r1d5MouseClicked
 
     private void r1d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d7MouseClicked
-        Component[] components = {r1d1, r1d2, r1d3, r1d4, r1d5, r1d6, r1d7, r1d8, r1d9, r1d10, r1d11, r1d12, r1d13, r1d14, r1d15, r1d16, r1d17, r1d18, r1d19, r1d20, r1d21};
+        
         setAllBackgroundColors(deskBaseColor);
         r1d7.setBackground(deskFilledColor);
     }//GEN-LAST:event_r1d7MouseClicked
@@ -3354,12 +3354,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_r2d6MouseClicked
 
     private void r2d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d2MouseClicked
-        // TODO add your handling code here:
+        setAllBackgroundColors(deskBaseColor);
+        r2d2.setBackground(deskFilledColor);
     }//GEN-LAST:event_r2d2MouseClicked
 
-    private void jPanel53MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel53MouseClicked
+    private void r2d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d14MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel53MouseClicked
+    }//GEN-LAST:event_r2d14MouseClicked
 
     private void jPanel54MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel54MouseClicked
         // TODO add your handling code here:
@@ -3664,7 +3665,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel45;
-    private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel54;
     private javax.swing.JPanel jPanel55;
     private javax.swing.JPanel jPanel56;
@@ -3729,6 +3729,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel r1d8;
     private javax.swing.JPanel r1d9;
     private javax.swing.JPanel r2d1;
+    private javax.swing.JPanel r2d14;
     private javax.swing.JPanel r2d2;
     private javax.swing.JPanel r2d3;
     private javax.swing.JPanel r2d4;

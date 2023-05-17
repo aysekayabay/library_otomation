@@ -1752,7 +1752,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel57" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jPanel53" min="-2" max="-2" attributes="0"/>
+                                      <Component id="r2d14" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="r2d1" min="-2" max="-2" attributes="0"/>
@@ -1793,7 +1793,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel53" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="r2d14" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel57" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel58" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel56" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -2091,14 +2091,14 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Container class="javax.swing.JPanel" name="jPanel53">
+                    <Container class="javax.swing.JPanel" name="r2d14">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="cc" red="cc" type="rgb"/>
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel53MouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="r2d14MouseClicked"/>
                       </Events>
 
                       <Layout>
