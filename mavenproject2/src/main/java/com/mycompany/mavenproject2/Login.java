@@ -1,12 +1,14 @@
 package com.mycompany.mavenproject2;
 
 import com.raven.component.PanelCover;
+import com.raven.component.PanelLoading;
 import com.raven.component.PanelLoginAndRegister;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import javax.swing.JLayeredPane;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -17,6 +19,7 @@ public class Login extends javax.swing.JFrame {
     private final DecimalFormat df = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private MigLayout layout;
     private PanelCover cover;
+    private PanelLoading loading;
     private PanelLoginAndRegister loginAndRegister;
     private boolean isLogin = true;
     private final double addSize = 30;
@@ -31,7 +34,15 @@ public class Login extends javax.swing.JFrame {
     private void init() {
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
-        loginAndRegister = new PanelLoginAndRegister();
+        loading = new PanelLoading();
+        ActionListener eventRegister = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                register();
+            
+            }
+        };
+        loginAndRegister = new PanelLoginAndRegister(eventRegister);
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -80,6 +91,8 @@ public class Login extends javax.swing.JFrame {
         animator.setDeceleration(0.5f);
         animator.setResolution(0);  //  for smooth animation
         bg.setLayout(layout);
+        bg.setLayer(loading, JLayeredPane.POPUP_LAYER);
+        bg.add(loading,"pos 0 0 100% 100%");
         bg.add(cover, "width " + coverSize + "%, pos " + (isLogin ? "1al" : "0al") + " 0 n 100%");
         bg.add(loginAndRegister, "width " + loginSize + "%, pos " + (isLogin ? "0al" : "1al") + " 0 n 100%"); //  1al as 100%
         loginAndRegister.showRegister(!isLogin);
@@ -94,6 +107,9 @@ public class Login extends javax.swing.JFrame {
         });
     }
     // </editor-fold>
+    private void register(){
+        System.out.println("Click Register");
+    }
 
  
     @SuppressWarnings("unchecked")
