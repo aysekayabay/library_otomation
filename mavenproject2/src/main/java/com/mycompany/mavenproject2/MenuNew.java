@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.mycompany.mavenproject2;
 
 import com.mongodb.client.MongoClient;
@@ -7,22 +11,23 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.awt.Color;
 import java.awt.Component;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.bson.Document;
 
 /**
  *
  * @author ayse
  */
-public class Menu extends javax.swing.JFrame {
-//    static String[] rooms = new String[]{"Salon 1", "Salon 2", "Salon 3"};
-    String currentEmail = null;
-   
+public class MenuNew extends javax.swing.JFrame {
+
+    static String email;
     static Room[] rooms = new Room[3];
-    static StringBuilder userName = new StringBuilder("");
-    static StringBuilder remainingBreaktimeCount = new StringBuilder("");
-    static StringBuilder userCredit = new StringBuilder("");
-    static StringBuilder libraryRate = new StringBuilder("");
+
+    static StringBuilder userName = new StringBuilder("a");
+    static StringBuilder remainingBreaktimeCount = new StringBuilder("3");
+    static StringBuilder userCredit = new StringBuilder("3");
+    static StringBuilder libraryRate = new StringBuilder("3");
     Color deskBaseColor = new Color(204, 204, 255);
     Color deskFilledColor = new Color(153, 0, 255);
     Color roomFilledColor = new Color(217, 166, 166);
@@ -35,9 +40,9 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
-    public Menu(String email) {
+    public MenuNew(String email) {
+        this.email = email;
         initComponents();
-        currentEmail = email;
     }
 
     /**
@@ -429,7 +434,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(nameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createSequentialGroup()
                         .addComponent(rateTitle)
@@ -451,11 +456,11 @@ public class Menu extends javax.swing.JFrame {
 
         room_name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_name.setText("Salon 1");
-        room_name.setText(rooms[0].getName());
+        //room_name.setText(rooms[0].getName());
 
         room_rate.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_rate.setText("0");
-        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
+        //room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
 
         jPanel45.setBackground(new java.awt.Color(153, 0, 255));
         jPanel45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -577,7 +582,7 @@ public class Menu extends javax.swing.JFrame {
 
         room_rate1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_rate1.setText("/ 21");
-        room_rate1.setText("/ " +String.valueOf(rooms[0].getDesk_num()));
+        //room_rate1.setText("/ " +String.valueOf(rooms[0].getDesk_num()));
 
         jLabel43.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel43.setText("Seçtiğin oda:");
@@ -628,7 +633,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createSequentialGroup()
                         .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2758,8 +2763,6 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel5.getAccessibleContext().setAccessibleDescription("");
-
         endBreakButton.setBackground(new java.awt.Color(204, 204, 255));
         endBreakButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -2835,7 +2838,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(takeBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         page.add(breaktimePage);
@@ -2852,7 +2855,7 @@ public class Menu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(leftbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(page, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(page, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
         );
 
         pack();
@@ -2865,7 +2868,6 @@ public class Menu extends javax.swing.JFrame {
         home.setBackground(Color.WHITE);
         seat.setBackground(deskBaseColor);
         breaktime.setBackground(deskBaseColor);
-
     }//GEN-LAST:event_homeMouseClicked
 
     private void seatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seatMouseClicked
@@ -2876,7 +2878,6 @@ public class Menu extends javax.swing.JFrame {
         home.setBackground(deskBaseColor);
         breaktime.setBackground(deskBaseColor);
 
-
     }//GEN-LAST:event_seatMouseClicked
 
     private void breaktimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_breaktimeMouseClicked
@@ -2886,518 +2887,21 @@ public class Menu extends javax.swing.JFrame {
         breaktime.setBackground(Color.WHITE);
         home.setBackground(deskBaseColor);
         seat.setBackground(deskBaseColor);
-
     }//GEN-LAST:event_breaktimeMouseClicked
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
-    private void r1d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d21MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d21.setBackground(deskFilledColor);
-        selected_desk.setText("21");
-        selected_room.setText("1");
-    }//GEN-LAST:event_r1d21MouseClicked
-
-    private void r1d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d20MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d20.setBackground(deskFilledColor);
-        selected_desk.setText("20");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d20MouseClicked
-
-    private void r1d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d19MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d19.setBackground(deskFilledColor);
-        selected_desk.setText("19");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d19MouseClicked
-
-    private void r1d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d18MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d18.setBackground(deskFilledColor);
-        selected_desk.setText("18");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d18MouseClicked
-
-    private void r1d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d17MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d17.setBackground(deskFilledColor);
-        selected_desk.setText("17");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d17MouseClicked
-
-    private void r1d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d16MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d16.setBackground(deskFilledColor);
-        selected_desk.setText("18");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d16MouseClicked
-
-    private void r1d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d15MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d15.setBackground(deskFilledColor);
-        selected_desk.setText("15");
-        selected_room.setText("1");
-
-
-    }//GEN-LAST:event_r1d15MouseClicked
-
-    private void r1d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d9MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d9.setBackground(deskFilledColor);
-        selected_desk.setText("9");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d9MouseClicked
-
-    private void r1d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d12MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d12.setBackground(deskFilledColor);
-        selected_desk.setText("12");
-
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d12MouseClicked
-
-    private void r1d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d13MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d13.setBackground(deskFilledColor);
-        selected_desk.setText("13");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d13MouseClicked
-
-    private void r1d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d11MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d11.setBackground(deskFilledColor);
-        selected_desk.setText("11");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d11MouseClicked
-
-    private void r1d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d10MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d10.setBackground(deskFilledColor);
-        selected_desk.setText("10");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d10MouseClicked
-
-    private void r1d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d8MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d8.setBackground(deskFilledColor);
-        selected_desk.setText("8");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d8MouseClicked
-
-    private void r1d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d14MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d14.setBackground(deskFilledColor);
-        selected_desk.setText("14");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d14MouseClicked
-
-    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d2.setBackground(deskFilledColor);
-        selected_desk.setText("2");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d2MouseClicked
-
-    private void r1d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d6MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d6.setBackground(deskFilledColor);
-        selected_desk.setText("6");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d6MouseClicked
-
-    private void r1d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d1MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d1.setBackground(deskFilledColor);
-        selected_desk.setText("1");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d1MouseClicked
-
-    private void r1d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d3MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d3.setBackground(deskFilledColor);
-        selected_desk.setText("3");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d3MouseClicked
-
-    private void r1d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d4MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d4.setBackground(deskFilledColor);
-        selected_desk.setText("4");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d4MouseClicked
-
-    private void r1d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d5MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d5.setBackground(deskFilledColor);
-        selected_desk.setText("5");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d5MouseClicked
-
-    private void r1d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d7MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r1d7.setBackground(deskFilledColor);
-        selected_desk.setText("7");
-        selected_room.setText("1");
-
-    }//GEN-LAST:event_r1d7MouseClicked
-
-    private void r2d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d7MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d7.setBackground(deskFilledColor);
-        selected_desk.setText("7");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d7MouseClicked
-
-    private void r2d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d5MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d5.setBackground(deskFilledColor);
-        selected_desk.setText("5");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d5MouseClicked
-
-    private void r2d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d4MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d4.setBackground(deskFilledColor);
-        selected_desk.setText("4");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d4MouseClicked
-
-    private void r2d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d3MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d3.setBackground(deskFilledColor);
-        selected_desk.setText("3");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d3MouseClicked
-
-    private void r2d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d1MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d1.setBackground(deskFilledColor);
-        selected_desk.setText("1");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d1MouseClicked
-
-    private void r2d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d6MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d6.setBackground(deskFilledColor);
-        selected_desk.setText("6");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d6MouseClicked
-
-    private void r2d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d2MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d2.setBackground(deskFilledColor);
-        selected_desk.setText("2");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d2MouseClicked
-
-    private void r2d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d14MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d14.setBackground(deskFilledColor);
-        selected_desk.setText("14");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d14MouseClicked
-
-    private void r2d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d8MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d8.setBackground(deskFilledColor);
-        selected_desk.setText("8");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d8MouseClicked
-
-    private void r2d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d10MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d10.setBackground(deskFilledColor);
-        selected_desk.setText("10");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d10MouseClicked
-
-    private void r2d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d11MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d11.setBackground(deskFilledColor);
-        selected_desk.setText("11");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d11MouseClicked
-
-    private void r2d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d13MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d13.setBackground(deskFilledColor);
-        selected_desk.setText("13");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d13MouseClicked
-
-    private void r2d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d12MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d12.setBackground(deskFilledColor);
-        selected_desk.setText("12");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d12MouseClicked
-
-    private void r2d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d9MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d9.setBackground(deskFilledColor);
-        selected_desk.setText("9");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d9MouseClicked
-
-    private void r2d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d15MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d15.setBackground(deskFilledColor);
-        selected_desk.setText("15");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d15MouseClicked
-
-    private void r2d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d16MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d16.setBackground(deskFilledColor);
-        selected_desk.setText("16");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d16MouseClicked
-
-    private void r2d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d17MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d17.setBackground(deskFilledColor);
-        selected_desk.setText("17");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d17MouseClicked
-
-    private void r2d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d18MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d18.setBackground(deskFilledColor);
-        selected_desk.setText("18");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d18MouseClicked
-
-    private void r2d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d19MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d19.setBackground(deskFilledColor);
-        selected_desk.setText("19");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d19MouseClicked
-
-    private void r2d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d20MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d20.setBackground(deskFilledColor);
-        selected_desk.setText("20");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d20MouseClicked
-
-    private void r2d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d21MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r2d21.setBackground(deskFilledColor);
-        selected_desk.setText("21");
-        selected_room.setText("2");
-
-    }//GEN-LAST:event_r2d21MouseClicked
-
-    private void r3d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d7MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d7.setBackground(deskFilledColor);
-        selected_desk.setText("7");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d7MouseClicked
-
-    private void r3d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d5MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d5.setBackground(deskFilledColor);
-        selected_desk.setText("5");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d5MouseClicked
-
-    private void r3d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d4MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d4.setBackground(deskFilledColor);
-        selected_desk.setText("4");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d4MouseClicked
-
-    private void r3d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d3MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d3.setBackground(deskFilledColor);
-        selected_desk.setText("3");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d3MouseClicked
-
-    private void r3d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d1MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d1.setBackground(deskFilledColor);
-        selected_desk.setText("1");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d1MouseClicked
-
-    private void r3d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d6MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d6.setBackground(deskFilledColor);
-        selected_desk.setText("6");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d6MouseClicked
-
-    private void r3d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d2MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d2.setBackground(deskFilledColor);
-        selected_desk.setText("2");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d2MouseClicked
-
-    private void r3d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d14MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d14.setBackground(deskFilledColor);
-        selected_desk.setText("14");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d14MouseClicked
-
-    private void r3d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d8MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d8.setBackground(deskFilledColor);
-        selected_desk.setText("8");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d8MouseClicked
-
-    private void r3d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d10MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d10.setBackground(deskFilledColor);
-        selected_desk.setText("10");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d10MouseClicked
-
-    private void r3d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d11MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d11.setBackground(deskFilledColor);
-        selected_desk.setText("11");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d11MouseClicked
-
-    private void r3d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d13MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d13.setBackground(deskFilledColor);
-        selected_room.setText("3");
-
-        selected_desk.setText("13");
-
-    }//GEN-LAST:event_r3d13MouseClicked
-
-    private void r3d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d12MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d12.setBackground(deskFilledColor);
-        selected_desk.setText("12");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d12MouseClicked
-
-    private void r3d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d9MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d9.setBackground(deskFilledColor);
-        selected_desk.setText("9");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d9MouseClicked
-
-    private void r3d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d15MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d15.setBackground(deskFilledColor);
-        selected_desk.setText("15");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d15MouseClicked
-
-    private void r3d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d16MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d16.setBackground(deskFilledColor);
-        selected_desk.setText("16");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d16MouseClicked
-
-    private void r3d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d17MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d17.setBackground(deskFilledColor);
-        selected_desk.setText("17");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d17MouseClicked
-
-    private void r3d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d18MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d18.setBackground(deskFilledColor);
-        selected_desk.setText("18");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d18MouseClicked
-
-    private void r3d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d19MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d19.setBackground(deskFilledColor);
-        selected_desk.setText("19");
-        selected_room.setText("3");
-
-    }//GEN-LAST:event_r3d19MouseClicked
-
-    private void r3d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d20MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d20.setBackground(deskFilledColor);
-        selected_desk.setText("20");
-        selected_room.setText("3");
-
-
-    }//GEN-LAST:event_r3d20MouseClicked
-
-    private void r3d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d21MouseClicked
-        setAllBackgroundColors(deskBaseColor);
-        r3d21.setBackground(deskFilledColor);
-        selected_desk.setText("21");
-        selected_room.setText("3");
-    }//GEN-LAST:event_r3d21MouseClicked
+    private void room1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room1ButtonMouseClicked
+        room2Button.setBackground(roomBaseColor);
+        room1Button.setBackground(roomFilledColor);
+        seat_area1.setVisible(true);
+        seat_area2.setVisible(false);
+        seat_area3.setVisible(false);
+        room_name.setText(rooms[0].getName());
+        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
+    }//GEN-LAST:event_room1ButtonMouseClicked
 
     private void room2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room2ButtonMouseClicked
         room2Button.setBackground(roomFilledColor);
@@ -3409,18 +2913,7 @@ public class Menu extends javax.swing.JFrame {
         room_name.setText(rooms[1].getName());
         room_rate.setText(String.valueOf(rooms[1].getCurrent_num()));
 
-
     }//GEN-LAST:event_room2ButtonMouseClicked
-
-    private void room1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room1ButtonMouseClicked
-        room2Button.setBackground(roomBaseColor);
-        room1Button.setBackground(roomFilledColor);
-        seat_area1.setVisible(true);
-        seat_area2.setVisible(false);
-        seat_area3.setVisible(false);
-        room_name.setText(rooms[0].getName());
-        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
-        room3Button.setBackground(roomBaseColor);    }//GEN-LAST:event_room1ButtonMouseClicked
 
     private void room3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room3ButtonMouseClicked
         room2Button.setBackground(roomBaseColor);
@@ -3431,30 +2924,480 @@ public class Menu extends javax.swing.JFrame {
         seat_area3.setVisible(true);
         room_name.setText(rooms[2].getName());
         room_rate.setText(String.valueOf(rooms[2].getCurrent_num()));
-
     }//GEN-LAST:event_room3ButtonMouseClicked
+
+    private void r1d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d7MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d7.setBackground(deskFilledColor);
+        selected_desk.setText("7");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d7MouseClicked
+
+    private void r1d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d5MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d5.setBackground(deskFilledColor);
+        selected_desk.setText("5");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d5MouseClicked
+
+    private void r1d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d4MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d4.setBackground(deskFilledColor);
+        selected_desk.setText("4");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d4MouseClicked
+
+    private void r1d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d3MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d3.setBackground(deskFilledColor);
+        selected_desk.setText("3");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d3MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    public static void main(String args[], String email) {
-      
+    private void r1d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d1MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d1.setBackground(deskFilledColor);
+        selected_desk.setText("1");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d1MouseClicked
+
+    private void r1d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d6MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d6.setBackground(deskFilledColor);
+        selected_desk.setText("6");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d6MouseClicked
+
+    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d2.setBackground(deskFilledColor);
+        selected_desk.setText("2");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d2MouseClicked
+
+    private void r1d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d14MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d14.setBackground(deskFilledColor);
+        selected_desk.setText("14");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d14MouseClicked
+
+    private void r1d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d8MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d8.setBackground(deskFilledColor);
+        selected_desk.setText("8");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d8MouseClicked
+
+    private void r1d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d10MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d10.setBackground(deskFilledColor);
+        selected_desk.setText("10");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d10MouseClicked
+
+    private void r1d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d11MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d11.setBackground(deskFilledColor);
+        selected_desk.setText("11");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d11MouseClicked
+
+    private void r1d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d13MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d13.setBackground(deskFilledColor);
+        selected_desk.setText("13");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d13MouseClicked
+
+    private void r1d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d12MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d12.setBackground(deskFilledColor);
+        selected_desk.setText("12");
+
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d12MouseClicked
+
+    private void r1d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d9MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d9.setBackground(deskFilledColor);
+        selected_desk.setText("9");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d9MouseClicked
+
+    private void r1d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d15MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d15.setBackground(deskFilledColor);
+        selected_desk.setText("15");
+        selected_room.setText("1");
+
+    }//GEN-LAST:event_r1d15MouseClicked
+
+    private void r1d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d16MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d16.setBackground(deskFilledColor);
+        selected_desk.setText("18");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d16MouseClicked
+
+    private void r1d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d17MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d17.setBackground(deskFilledColor);
+        selected_desk.setText("17");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d17MouseClicked
+
+    private void r1d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d18MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d18.setBackground(deskFilledColor);
+        selected_desk.setText("18");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d18MouseClicked
+
+    private void r1d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d19MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d19.setBackground(deskFilledColor);
+        selected_desk.setText("19");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d19MouseClicked
+
+    private void r1d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d20MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d20.setBackground(deskFilledColor);
+        selected_desk.setText("20");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d20MouseClicked
+
+    private void r1d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d21MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r1d21.setBackground(deskFilledColor);
+        selected_desk.setText("21");
+        selected_room.setText("1");
+    }//GEN-LAST:event_r1d21MouseClicked
+
+    private void r2d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d7MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d7.setBackground(deskFilledColor);
+        selected_desk.setText("7");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d7MouseClicked
+
+    private void r2d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d5MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d5.setBackground(deskFilledColor);
+        selected_desk.setText("5");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d5MouseClicked
+
+    private void r2d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d4MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d4.setBackground(deskFilledColor);
+        selected_desk.setText("4");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d4MouseClicked
+
+    private void r2d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d3MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d3.setBackground(deskFilledColor);
+        selected_desk.setText("3");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d3MouseClicked
+
+    private void r2d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d1MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d1.setBackground(deskFilledColor);
+        selected_desk.setText("1");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d1MouseClicked
+
+    private void r2d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d6MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d6.setBackground(deskFilledColor);
+        selected_desk.setText("6");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d6MouseClicked
+
+    private void r2d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d2MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d2.setBackground(deskFilledColor);
+        selected_desk.setText("2");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d2MouseClicked
+
+    private void r2d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d14MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d14.setBackground(deskFilledColor);
+        selected_desk.setText("14");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d14MouseClicked
+
+    private void r2d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d8MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d8.setBackground(deskFilledColor);
+        selected_desk.setText("8");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d8MouseClicked
+
+    private void r2d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d10MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d10.setBackground(deskFilledColor);
+        selected_desk.setText("10");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d10MouseClicked
+
+    private void r2d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d11MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d11.setBackground(deskFilledColor);
+        selected_desk.setText("11");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d11MouseClicked
+
+    private void r2d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d13MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d13.setBackground(deskFilledColor);
+        selected_desk.setText("13");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d13MouseClicked
+
+    private void r2d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d12MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d12.setBackground(deskFilledColor);
+        selected_desk.setText("12");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d12MouseClicked
+
+    private void r2d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d9MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d9.setBackground(deskFilledColor);
+        selected_desk.setText("9");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d9MouseClicked
+
+    private void r2d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d15MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d15.setBackground(deskFilledColor);
+        selected_desk.setText("15");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d15MouseClicked
+
+    private void r2d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d16MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d16.setBackground(deskFilledColor);
+        selected_desk.setText("16");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d16MouseClicked
+
+    private void r2d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d17MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d17.setBackground(deskFilledColor);
+        selected_desk.setText("17");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d17MouseClicked
+
+    private void r2d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d18MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d18.setBackground(deskFilledColor);
+        selected_desk.setText("18");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d18MouseClicked
+
+    private void r2d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d19MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d19.setBackground(deskFilledColor);
+        selected_desk.setText("19");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d19MouseClicked
+
+    private void r2d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d20MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d20.setBackground(deskFilledColor);
+        selected_desk.setText("20");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d20MouseClicked
+
+    private void r2d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d21MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r2d21.setBackground(deskFilledColor);
+        selected_desk.setText("21");
+        selected_room.setText("2");
+    }//GEN-LAST:event_r2d21MouseClicked
+
+    private void r3d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d7MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d7.setBackground(deskFilledColor);
+        selected_desk.setText("7");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d7MouseClicked
+
+    private void r3d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d5MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d5.setBackground(deskFilledColor);
+        selected_desk.setText("5");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d5MouseClicked
+
+    private void r3d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d4MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d4.setBackground(deskFilledColor);
+        selected_desk.setText("4");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d4MouseClicked
+
+    private void r3d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d3MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d3.setBackground(deskFilledColor);
+        selected_desk.setText("3");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d3MouseClicked
+
+    private void r3d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d1MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d1.setBackground(deskFilledColor);
+        selected_desk.setText("1");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d1MouseClicked
+
+    private void r3d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d6MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d6.setBackground(deskFilledColor);
+        selected_desk.setText("6");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d6MouseClicked
+
+    private void r3d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d2MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d2.setBackground(deskFilledColor);
+        selected_desk.setText("2");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d2MouseClicked
+
+    private void r3d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d14MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d14.setBackground(deskFilledColor);
+        selected_desk.setText("14");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d14MouseClicked
+
+    private void r3d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d8MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d8.setBackground(deskFilledColor);
+        selected_desk.setText("8");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d8MouseClicked
+
+    private void r3d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d10MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d10.setBackground(deskFilledColor);
+        selected_desk.setText("10");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d10MouseClicked
+
+    private void r3d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d11MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d11.setBackground(deskFilledColor);
+        selected_desk.setText("11");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d11MouseClicked
+
+    private void r3d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d13MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d13.setBackground(deskFilledColor);
+        selected_room.setText("3");
+
+        selected_desk.setText("13");
+    }//GEN-LAST:event_r3d13MouseClicked
+
+    private void r3d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d12MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d12.setBackground(deskFilledColor);
+        selected_desk.setText("12");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d12MouseClicked
+
+    private void r3d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d9MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d9.setBackground(deskFilledColor);
+        selected_desk.setText("9");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d9MouseClicked
+
+    private void r3d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d15MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d15.setBackground(deskFilledColor);
+        selected_desk.setText("15");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d15MouseClicked
+
+    private void r3d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d16MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d16.setBackground(deskFilledColor);
+        selected_desk.setText("16");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d16MouseClicked
+
+    private void r3d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d17MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d17.setBackground(deskFilledColor);
+        selected_desk.setText("17");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d17MouseClicked
+
+    private void r3d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d18MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d18.setBackground(deskFilledColor);
+        selected_desk.setText("18");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d18MouseClicked
+
+    private void r3d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d19MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d19.setBackground(deskFilledColor);
+        selected_desk.setText("19");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d19MouseClicked
+
+    private void r3d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d20MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d20.setBackground(deskFilledColor);
+        selected_desk.setText("20");
+        selected_room.setText("3");
+
+    }//GEN-LAST:event_r3d20MouseClicked
+
+    private void r3d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d21MouseClicked
+        setAllBackgroundColors(deskBaseColor);
+        r3d21.setBackground(deskFilledColor);
+        selected_desk.setText("21");
+        selected_room.setText("3");
+    }//GEN-LAST:event_r3d21MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        String userEmail = MenuNew.email;
+        rooms[0] = new Room("a", 1, 1);
+        rooms[1] = new Room("a", 1, 1);
+        rooms[2] = new Room("a", 1, 1);
         int userCount = 0;
         int deskCount = 0;
         Document userDocument = null;
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
-            
+
             MongoCollection<Document> usersCollection = database.getCollection("users");
-            userDocument = usersCollection.find(Filters.eq("email", email)).first();
+            userDocument = usersCollection.find(Filters.eq("email", userEmail)).first();
             if (userDocument != null) {
                 userName.append(userDocument.getString("name"));
-                long creditValue = userDocument.getLong("credit");
-                userCredit.append(String.valueOf(creditValue));
-                long breakLeft = userDocument.getLong("break_left");
-                remainingBreaktimeCount.append(String.valueOf(breakLeft));
-
+//                long creditValue = userDocument.getLong("credit");
+//                userCredit.append(String.valueOf(creditValue));
+//                long breakLeft = userDocument.getLong("break_left");
+//                remainingBreaktimeCount.append(String.valueOf(breakLeft));
+//
             }
             MongoCollection<Document> roomsCollection = database.getCollection("rooms");
             List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
@@ -3479,14 +3422,11 @@ public class Menu extends javax.swing.JFrame {
 
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu(email).setVisible(true);
-
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuNew(userEmail).setVisible(true);
         });
-    }
 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel breaktime;

@@ -1,5 +1,6 @@
 package com.raven.component;
-
+import com.mycompany.mavenproject2.MenuNew;
+import com.mycompany.mavenproject2.Login;
 import com.mongodb.ConnectionString;
 import com.raven.swing.Button;
 import com.raven.swing.MyPasswordField;
@@ -16,6 +17,8 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mycompany.mavenproject2.Menu;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 import org.bson.Document;
 
@@ -23,7 +26,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private JLabel warningLabel;
     private Timer timer;
     private int delay = 5000;
-
+//ibrahim2001sahin@hotmail.com
+//ibrahimU123
     
     public void saveToMongoDB(String name, String surname, String email, String password) {
     // MongoDB Atlas bağlantı bilgilerini ayarlayın
@@ -62,7 +66,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     }
 }
      
-    private void findUser(String email, String password) {
+    private int findUser(String email, String password) {
     // MongoDB Atlas connection settings
     String connectionString = "mongodb+srv://Ayse:ibrahimU123@cluster0.y3msch8.mongodb.net/?retryWrites=true&w=majority";
     MongoClientSettings settings = MongoClientSettings.builder()
@@ -87,19 +91,23 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
         if (user != null) {
             System.out.println("User found: " + user.toJson());
+            return 1;
         } else {
             warningLabel.setText("Invalid email or password. Please try again.");
             timer.restart();
+            return 0;
         }
     } catch (Exception e) {
+        
         System.err.println("Error while searching for user in MongoDB: " + e.getMessage());
+        return 0;
     }
 }
     
-    public PanelLoginAndRegister(ActionListener eventRegister) {
+    public PanelLoginAndRegister(ActionListener eventRegister, Login loginFrame) {
         initComponents();
         initRegister(eventRegister);
-        initLogin();
+        initLogin(loginFrame);
         login.setVisible(false);
         register.setVisible(true);
     }
@@ -151,7 +159,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         });
     }
 
-    private void initLogin() {
+    private void initLogin(Login loginFrame) {
         warningLabel = new JLabel();
         warningLabel.setForeground(Color.RED);
         warningLabel.setFont(new Font("sansserif", Font.PLAIN, 12));
@@ -194,11 +202,15 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
            String password = txtPass.getText();
         
            // Search for the user in the MongoDB Atlas database
-           findUser(email, password);
-        
+           int result = findUser(email, password);
+         
            txtEmail.setText("");
            txtPass.setText("");
-        
+          if(result==1){
+              loginFrame.setVisible(false);
+               MenuNew menunew = new MenuNew(email);
+               menunew.setVisible(true);
+           }
         });
         
     }

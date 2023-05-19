@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
             
             }
         };
-        loginAndRegister = new PanelLoginAndRegister(eventRegister);
+        loginAndRegister = new PanelLoginAndRegister(eventRegister, this);
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
