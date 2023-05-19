@@ -11,17 +11,13 @@ public class Room {
 		this.name = name;
 		this.current_num = current_num;
 		this.desk_num= desk_num;
-	}
-        
-	public Room(String name) {
-		
-		this.name = name;
-		current_num = 0;
 		for(int i = 0; i<desk_num; i++) {
 			desk[i] = new Desk(i+1);
+			System.out.println("SIRA OLUSTU");
 		}
 		
 	}
+    
 	
 	public double dolulukOrani() {
 		double doluluk = (current_num / desk_num) * 100;
@@ -47,8 +43,8 @@ public class Room {
 		return current_num;
 	}
         
-	public void setCurrent_num(int x) {
-		current_num = current_num + x;
+	public void setCurrent_num(int current_num) {
+		this.current_num = current_num;
 	}
 	
 	

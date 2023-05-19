@@ -16,20 +16,24 @@ public class Main {
 		//k1.makeReservations(m1);
 		System.out.println("\n\nm2: ");
 		k1.makeReservations(m2);
-		k1.takeBreak(m2);
+		//k1.takeBreak(m2);
 		//k1.takeBreak(m2);
 		//k1.takeBreak(m2);
 		
 		System.out.println("\n\nm3: ");
 		k1.makeReservations(m3);
-		k1.takeBreak(m3);
-		k1.takeBreak(m3);
+		//k1.takeBreak(m3);
+		//k1.takeBreak(m3);
 		
 		k1.makeReservations(m3);
 		k1.dolulukOrani();
 		
+		System.out.println("\n\nm5: ");
 		k1.makeReservations(m5);
+		System.out.println("\n\nm6: ");
 		k1.makeReservations(m6);
+		
+		System.out.println("\n\nm7: ");
 		k1.makeReservations(m7);
 		
 		k1.dolulukOrani();
@@ -37,13 +41,19 @@ public class Main {
 		System.out.println("\n\nm4: ");
 		k1.makeReservations(m4);
 		
-		System.out.println("\n\nm6 exit: ");
-		k1.exitKutup(m6);
+		//System.out.println("\n\nm6 exit: ");
+		//k1.exitKutup(m6);
 		
 		
 		System.out.println("\n\nm1: ");
 		k1.makeReservations(m1);
-		k1.exitKutup(m3);
+		
+		//System.out.println("\n\nm3 exit: ");
+		//k1.exitKutup(m3);
+		System.out.println("\n\nm8: ");
+		k1.makeReservations(m8);
+		System.out.println("\n\nm6 exit: ");
+		k1.exitKutup(m6);
 		System.out.println("\n\nm3 exit: ");
 		k1.exitKutup(m3);
 		

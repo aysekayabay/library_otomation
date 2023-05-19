@@ -21,7 +21,8 @@ public class Kutuphane {
 	public Kutuphane() {
 
 		for(int i=0; i<roomNumber; i++) {
-			room[i] = new Room(""+i+"");
+			room[i] = new Room(""+i+"", 0, 3);
+			System.out.println("ODA OLUSTU");
 		}
 		
 		userLine = new ArrayList<>();
@@ -44,13 +45,13 @@ public class Kutuphane {
 		
 		int x = member.takeBreak();
 		
-		if(member.isBanned()) {
-			System.out.println("Banlandın lan sg");
+		if(member.isBanned() || (x==0)) {
+			System.out.println("Banlandın ya da donmedin aradan geri");
 			exitKutup(member);
-		}else if((member.getBreak_left() == -1)||(x == 0)) {
-			member.setBreak_left(3);
-			exitKutup(member);
-		}
+		}//else if(member.getBreak_left() == -1) {
+			
+		//	exitKutup(member);
+		//}
 	}
 
 	
@@ -74,12 +75,13 @@ public class Kutuphane {
 		}
 	}
 	
-	public void removeLine(Member member) {
-		for (Member aUser : userLine) {
-			if(aUser.getLine()==member.getLine()) {
-				userLine.remove(userLine.indexOf(aUser));
-			}
+	public void removeLine(int index) {
+		
+		if(index != -1) {
+			userLine.remove(index);
+			//System.out.println("oldu bu baya");
 		}
+		
 	}
 	
 	
@@ -91,8 +93,8 @@ public class Kutuphane {
 		
 		if(!member.isBanned()) {
 		
-			if(member.getLine() != 0) {
-				System.out.println("Henuz siraniz gelmedi. Tekrar reservasyon yapamazsiniz.");
+			if((member.getLine() != 0 )|| (member.getLine() == -1)) {
+				System.out.println("Henuz siraniz gelmedi ya da zaten kutuphanedesiniz. Tekrar reservasyon yapamazsiniz.");
 			}else {
 		
 				for(int i=0;i<room.length;i++ ) {    // ilk kontrol edilmeli aksi taktirde rooms[i] null olmasından dolayı !rooms[i].isAvailable() ifadesi hata verir.
@@ -111,8 +113,12 @@ public class Kutuphane {
 				}
 		
 				if(flag==0) {
-					addLine(member);
-					System.out.println("Kutuphane su anda dolu. Sira numaraniz: " + line);
+					if(addLine(member)) {
+						System.out.println("Kutuphane su anda dolu. Sira numaraniz: " + line);
+					}else{
+						System.out.println("yabamadim");
+					}
+					
 				}else {
 					System.out.println("Masa seciniz.");
 			
@@ -121,17 +127,18 @@ public class Kutuphane {
 			
 					member.setRoom(a);
 					member.setDesk(b);
-					member.setLine(0);
+					member.setLine(-1);
 					room[a].desk[b].setAvailable(false);
 					room[a].desk[b].setOwnerId(member.getId());
-					room[a].setCurrent_num(1);
+					room[a].setCurrent_num(room[a].getCurrent_num() + 1);
 					System.out.println(room[a].getName() + " current people number: " + room[a].getCurrent_num());
-			
+					System.out.println(room[a].desk[b].toString());
 			
 					a++;
 					b++;
 			
 					System.out.println("Yeriniz: room " + a + ", masa " + b + "!");
+
 				}
 		
 			}
@@ -148,15 +155,18 @@ public class Kutuphane {
 		member.setRoom(-1);
 		member.setDesk(-1);
 		member.setBreak_left(2);
+		member.setLine(0);
 		System.out.println(member);
 		
 		if(line-line2 >= 0) {
+			int index = -1;
 			for (Member user : this.userLine) {
 				if(user.getLine() == line2) {
 					user.setRoom(i);
 					user.setDesk(j);
-					user.setLine(0);
-					removeLine(user);
+					user.setLine(-1);
+					index = userLine.indexOf(user);
+					
 					room[i].desk[j].setOwnerId(user.getId());
 					System.out.println(room[i].desk[j]);
 					
@@ -165,9 +175,10 @@ public class Kutuphane {
 					
 				}
 			}
+			removeLine(index);
 			line2++;
 		}else {
-			room[i].setCurrent_num(-1);
+			room[i].setCurrent_num(room[i].getCurrent_num()-1);
 			room[i].desk[j].setAvailable(true);
 			room[i].desk[j].setOwnerId("-1");
 			System.out.println(room[i].desk[j]);
@@ -202,10 +213,6 @@ public class Kutuphane {
 	public ArrayList<Member> getUserLine() {
 		return userLine;
 	}
-	
-	
-	
-	
 	
 	
 }
