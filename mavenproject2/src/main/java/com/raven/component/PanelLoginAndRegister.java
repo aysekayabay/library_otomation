@@ -1,5 +1,4 @@
 package com.raven.component;
-import com.mycompany.mavenproject2.MenuNew;
 import com.mycompany.mavenproject2.Login;
 import com.mongodb.ConnectionString;
 import com.raven.swing.Button;
@@ -208,8 +207,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
            txtPass.setText("");
           if(result==1){
               loginFrame.setVisible(false);
-               MenuNew menunew = new MenuNew(email);
-               menunew.setVisible(true);
+               Menu menu = new Menu(email);
+               menu.setVisible(true);
            }
         });
         

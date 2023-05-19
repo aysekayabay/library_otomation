@@ -16,8 +16,8 @@ import org.bson.Document;
  */
 public class Menu extends javax.swing.JFrame {
 //    static String[] rooms = new String[]{"Salon 1", "Salon 2", "Salon 3"};
-    String currentEmail = null;
-   
+
+    static String email;
     static Room[] rooms = new Room[3];
     static StringBuilder userName = new StringBuilder("");
     static StringBuilder remainingBreaktimeCount = new StringBuilder("");
@@ -37,7 +37,8 @@ public class Menu extends javax.swing.JFrame {
 
     public Menu(String email) {
         initComponents();
-        currentEmail = email;
+        this.email = email;
+
     }
 
     /**
@@ -3438,14 +3439,14 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    public static void main(String args[], String email) {
-      
+    public static void main(String args[]) {
+
         int userCount = 0;
         int deskCount = 0;
         Document userDocument = null;
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
-            
+
             MongoCollection<Document> usersCollection = database.getCollection("users");
             userDocument = usersCollection.find(Filters.eq("email", email)).first();
             if (userDocument != null) {
