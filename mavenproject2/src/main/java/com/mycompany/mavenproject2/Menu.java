@@ -5,16 +5,30 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.util.*;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.bson.Document;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author ayse
  */
 public class Menu extends javax.swing.JFrame {
+    
+
+    private boolean breakInProgress = false;
+    private JLabel warningLabel;
+    private javax.swing.Timer timer;
+    private int delay = 5000;
     static Member myUser;
     static String email;
     static Room[] rooms = new Room[3];
@@ -105,6 +119,45 @@ public class Menu extends javax.swing.JFrame {
 
         }
 
+    }
+
+    public class SecondTimer {
+
+        private static int count = 0;
+
+        public static void main(String[] args) {
+            javax.swing.Timer timer = new javax.swing.Timer(1000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    count++;
+                    System.out.println("Seconds: " + count);
+                }
+            });
+
+            timer.start();
+        }
+    }
+
+    private void showNoBreakLeftAlert(String message) {
+        if (timer != null && timer.isRunning()) {
+            // Timer is already running, no need to start it again
+            return;
+        }
+
+        // Create the warning label
+        JLabel warningLabel = new JLabel(message);
+        warningLabel.setForeground(Color.RED);
+        warningLabel.setFont(new Font("sansserif", Font.BOLD, 14));
+
+        // Show a custom dialog
+        JOptionPane.showMessageDialog(null, warningLabel, "MESSAGE", JOptionPane.PLAIN_MESSAGE);
+
+        timer = new javax.swing.Timer(delay, event -> {
+            // Perform any additional actions after the delay
+        });
+        timer.setRepeats(false); // No need to repeat
+
+        timer.start();
     }
 
     /**
@@ -2837,6 +2890,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Molayı Bitir");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout endBreakButtonLayout = new javax.swing.GroupLayout(endBreakButton);
         endBreakButton.setLayout(endBreakButtonLayout);
@@ -3508,12 +3566,56 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        //Mola al - 15 dakikalık timer oluştur
+        SecondTimer timer = new SecondTimer();
+        if (!breakInProgress) {
+            // Mola al - 15 dakikalık timer oluştur
+            int break_left = myUser.getBreak_left();
+            String name = myUser.getName();
+            if (break_left > 0) {
+                breakInProgress = true;
+                // Disable the "Mola başlat" button
+                jLabel5.setEnabled(!breakInProgress);
+                Document userDocument = null;
+                break_left = break_left - 1;
+                myUser.setBreak_left(break_left);
+                System.out.println(name);
+                System.out.println(break_left);
+                showNoBreakLeftAlert("15 dakikalık molanız başladı!");
+                try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+                    MongoDatabase database = mongoClient.getDatabase("Library");
+                    MongoCollection<Document> userCollection = database.getCollection("users");
+                    Document query = new Document("email", myUser.getEmail());
+                    Document updatedDocument = new Document("$set", new Document("break_left", break_left));
+                    userCollection.updateOne(query, updatedDocument);
+                    mongoClient.close();
+                    remaining_break_count_label.setText(String.valueOf(break_left));
+
+                }
+                
+            } else {
+                System.out.println("MOLA HAKKI BİTTİ!");
+                showNoBreakLeftAlert("MOLA HAKKINIZ BİTTİ");
+            }
+        } else {
+            showNoBreakLeftAlert("HALA MOLADASINIZ!");
+        }
+
 
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void approveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveButtonMouseClicked
 
     }//GEN-LAST:event_approveButtonMouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        breakInProgress = false;
+        jLabel5.setEnabled(!breakInProgress);
+        timer.stop();
+        System.out.println("Timer stopped.");
+
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     public static void main(String args[]) {
 

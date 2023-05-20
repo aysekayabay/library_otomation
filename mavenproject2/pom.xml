@@ -27,6 +27,12 @@
 	<artifactId>miglayout-swing</artifactId>
 	<version>5.2</version>
       </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <name>Login_Register</name>
 </project>
