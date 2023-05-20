@@ -11,10 +11,10 @@ public class Room {
 		this.name = name;
 		this.current_num = current_num;
 		this.desk_num= desk_num;
-		for(int i = 0; i<desk_num; i++) {
-			desk[i] = new Desk(i+1);
-			System.out.println("SIRA OLUSTU");
-		}
+//		for(int i = 0; i<desk_num; i++) {
+//			desk[i] = new Desk(i+1);
+//			System.out.println("SIRA OLUSTU");
+//		}
 		
 	}
     
