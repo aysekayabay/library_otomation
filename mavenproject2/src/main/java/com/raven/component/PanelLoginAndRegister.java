@@ -1,7 +1,6 @@
 package com.raven.component;
 
 import com.mycompany.mavenproject2.Login;
-import com.mycompany.mavenproject2.NewJFrame;
 import com.mongodb.ConnectionString;
 import com.raven.swing.Button;
 import com.raven.swing.MyPasswordField;
@@ -19,7 +18,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mycompany.mavenproject2.Menu;
-import com.mycompany.mavenproject2.NewJFrame;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import org.bson.Document;

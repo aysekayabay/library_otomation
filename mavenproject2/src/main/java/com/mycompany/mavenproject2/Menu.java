@@ -15,8 +15,7 @@ import org.bson.Document;
  * @author ayse
  */
 public class Menu extends javax.swing.JFrame {
-//    static String[] rooms = new String[]{"Salon 1", "Salon 2", "Salon 3"};
-
+    static Member myUser;
     static String email;
     static Room[] rooms = new Room[3];
     static StringBuilder userName = new StringBuilder("q");
@@ -48,26 +47,23 @@ public class Menu extends javax.swing.JFrame {
         Document userDocument = null;
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
-
             MongoCollection<Document> usersCollection = database.getCollection("users");
             userDocument = usersCollection.find(Filters.eq("email", email)).first();
             if (userDocument != null) {
+                myUser = new Member(userDocument.getString("name"), userDocument.getString("surname"), userDocument.getString("id"), email, userDocument.getInteger("credit"), userDocument.getInteger("break_left"), userDocument.getBoolean("banned"), userDocument.getInteger("line"), userDocument.getInteger("desk"), userDocument.getInteger("room"));
                 userName.setLength(0);
-                userName.append(userDocument.getString("name"));
+                userName.append(myUser.getName());
                 nameLabel.setText(userName.toString());
-                Integer creditValue = userDocument.getInteger("credit");
                 userCredit.setLength(0);
-                userCredit.append(String.valueOf(creditValue));
-                Integer breakLeft = userDocument.getInteger("break_left");
+                userCredit.append(String.valueOf(myUser.getCredit()));
                 remainingBreaktimeCount.setLength(0);
-                remainingBreaktimeCount.append(String.valueOf(breakLeft));
+                remainingBreaktimeCount.append(String.valueOf(myUser.getBreak_left()));
 
             }
             MongoCollection<Document> roomsCollection = database.getCollection("rooms");
             List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
             int i = 0;
             for (Document room : roomsDocument) {
-
                 System.out.println(room.toJson());
                 Room newRoom = new Room(room.getString("name"), room.getInteger("current_num"), room.getInteger("desk_num"));
                 userCount = userCount + newRoom.getCurrent_num();
@@ -141,7 +137,7 @@ public class Menu extends javax.swing.JFrame {
         room_header = new javax.swing.JPanel();
         room_name = new javax.swing.JLabel();
         room_rate = new javax.swing.JLabel();
-        jPanel45 = new javax.swing.JPanel();
+        approveButton = new javax.swing.JPanel();
         jLabel67 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         selected_desk = new javax.swing.JLabel();
@@ -523,8 +519,13 @@ public class Menu extends javax.swing.JFrame {
         room_rate.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_rate.setText("0");
 
-        jPanel45.setBackground(new java.awt.Color(153, 0, 255));
-        jPanel45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        approveButton.setBackground(new java.awt.Color(153, 0, 255));
+        approveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        approveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                approveButtonMouseClicked(evt);
+            }
+        });
 
         jLabel67.setFont(new java.awt.Font("Segoe UI Light", 1, 12)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(255, 255, 255));
@@ -532,18 +533,18 @@ public class Menu extends javax.swing.JFrame {
         jLabel67.setText("Onayla");
         jLabel67.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
-        jPanel45.setLayout(jPanel45Layout);
-        jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
+        javax.swing.GroupLayout approveButtonLayout = new javax.swing.GroupLayout(approveButton);
+        approveButton.setLayout(approveButtonLayout);
+        approveButtonLayout.setHorizontalGroup(
+            approveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(approveButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
+        approveButtonLayout.setVerticalGroup(
+            approveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(approveButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -671,7 +672,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selected_room, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(45, 45, 45)
-                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(approveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(room_headerLayout.createSequentialGroup()
                 .addGap(146, 146, 146)
@@ -693,7 +694,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createSequentialGroup()
                         .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -707,7 +708,7 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(selected_desk)
                         .addComponent(jLabel42))
-                    .addComponent(jPanel45, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(approveButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -2805,6 +2806,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(204, 204, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Mola Al");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout takeBreakButtonLayout = new javax.swing.GroupLayout(takeBreakButton);
         takeBreakButton.setLayout(takeBreakButtonLayout);
@@ -3501,6 +3507,14 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void approveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveButtonMouseClicked
+
+    }//GEN-LAST:event_approveButtonMouseClicked
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -3513,6 +3527,7 @@ public class Menu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel approveButton;
     private javax.swing.JPanel breaktime;
     private javax.swing.JPanel breaktimePage;
     private javax.swing.JLabel breaktimeTitle;
@@ -3596,7 +3611,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
-    private javax.swing.JPanel jPanel45;
     private javax.swing.JPanel jPanel67;
     private javax.swing.JPanel jPanel68;
     private javax.swing.JPanel jPanel90;
