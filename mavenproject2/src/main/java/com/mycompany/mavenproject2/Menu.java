@@ -19,10 +19,10 @@ public class Menu extends javax.swing.JFrame {
 
     static String email;
     static Room[] rooms = new Room[3];
-    static StringBuilder userName = new StringBuilder("");
-    static StringBuilder remainingBreaktimeCount = new StringBuilder("");
-    static StringBuilder userCredit = new StringBuilder("");
-    static StringBuilder libraryRate = new StringBuilder("");
+    static StringBuilder userName = new StringBuilder("q");
+    static StringBuilder remainingBreaktimeCount = new StringBuilder("-1");
+    static StringBuilder userCredit = new StringBuilder("-1");
+    static StringBuilder libraryRate = new StringBuilder("-1");
     Color deskBaseColor = new Color(204, 204, 255);
     Color deskFilledColor = new Color(153, 0, 255);
     Color roomFilledColor = new Color(217, 166, 166);
@@ -38,6 +38,76 @@ public class Menu extends javax.swing.JFrame {
     public Menu(String email) {
         initComponents();
         this.email = email;
+        setUpdates();
+
+    }
+
+    public void setUpdates() {
+        int userCount = 0;
+        int deskCount = 0;
+        Document userDocument = null;
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            MongoDatabase database = mongoClient.getDatabase("Library");
+
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+            userDocument = usersCollection.find(Filters.eq("email", email)).first();
+            if (userDocument != null) {
+                userName.setLength(0);
+                userName.append(userDocument.getString("name"));
+                nameLabel.setText(userName.toString());
+                Integer creditValue = userDocument.getInteger("credit");
+                userCredit.setLength(0);
+                userCredit.append(String.valueOf(creditValue));
+                Integer breakLeft = userDocument.getInteger("break_left");
+                remainingBreaktimeCount.setLength(0);
+                remainingBreaktimeCount.append(String.valueOf(breakLeft));
+
+            }
+            MongoCollection<Document> roomsCollection = database.getCollection("rooms");
+            List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
+            int i = 0;
+            for (Document room : roomsDocument) {
+
+                System.out.println(room.toJson());
+                Room newRoom = new Room(room.getString("name"), room.getInteger("current_num"), room.getInteger("desk_num"));
+                userCount = userCount + newRoom.getCurrent_num();
+                deskCount = deskCount + newRoom.getDesk_num();
+                rooms[i] = newRoom;
+                i++;
+            }
+            if (deskCount != 0) {
+                int realRate = 0;
+                System.out.println(userCount);
+                System.out.println(deskCount);
+                realRate = 100 * userCount / deskCount;
+                System.out.println(realRate);
+                libraryRate.setLength(0);
+                libraryRate.append(realRate);
+
+            }
+
+        }
+
+        room_name.setText(rooms[0].getName());
+        room_rate1.setText("/ " + String.valueOf(rooms[0].getDesk_num()));
+        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
+        if (userName.length() > 0) {
+            nameLabel.setText(userName.toString());
+        }
+
+        if (remainingBreaktimeCount.length() > 0) {
+            remaining_break_count_label.setText(remainingBreaktimeCount.toString());
+        }
+
+        if (userCredit.length() > 0) {
+            credit_label.setText(userCredit.toString());
+        }
+
+        if (libraryRate.length() > 0) {
+            rateLabel.setText(libraryRate.toString());
+            rateBar.setValue(Integer.parseInt(libraryRate.toString()));
+
+        }
 
     }
 
@@ -360,7 +430,6 @@ public class Menu extends javax.swing.JFrame {
         rateBar.setBackground(new java.awt.Color(204, 204, 255));
         rateBar.setForeground(new java.awt.Color(153, 0, 255));
         rateBar.setValue(60);
-        rateBar.setValue(Integer.parseInt(libraryRate.toString()));
 
         rateTitle.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         rateTitle.setText("Çalışma Alanlarındaki Doluluk Oranı");
@@ -384,11 +453,9 @@ public class Menu extends javax.swing.JFrame {
 
         nameLabel.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         nameLabel.setText("A");
-        nameLabel.setText(userName.toString());
 
         rateLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         rateLabel.setText("75");
-        rateLabel.setText(libraryRate.toString());
 
         javax.swing.GroupLayout homePageLayout = new javax.swing.GroupLayout(homePage);
         homePage.setLayout(homePageLayout);
@@ -452,11 +519,9 @@ public class Menu extends javax.swing.JFrame {
 
         room_name.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_name.setText("Salon 1");
-        room_name.setText(rooms[0].getName());
 
         room_rate.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_rate.setText("0");
-        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
 
         jPanel45.setBackground(new java.awt.Color(153, 0, 255));
         jPanel45.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -578,7 +643,6 @@ public class Menu extends javax.swing.JFrame {
 
         room_rate1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         room_rate1.setText("/ 21");
-        room_rate1.setText("/ " +String.valueOf(rooms[0].getDesk_num()));
 
         jLabel43.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel43.setText("Seçtiğin oda:");
@@ -2790,14 +2854,12 @@ public class Menu extends javax.swing.JFrame {
 
         remaining_break_count_label.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         remaining_break_count_label.setText("3");
-        remaining_break_count_label.setText(remainingBreaktimeCount.toString());
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel9.setText("Kredi:");
 
         credit_label.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         credit_label.setText("10");
-        credit_label.setText(userCredit.toString());
 
         javax.swing.GroupLayout breaktimePageLayout = new javax.swing.GroupLayout(breaktimePage);
         breaktimePage.setLayout(breaktimePageLayout);
@@ -3440,45 +3502,6 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel10MouseClicked
 
     public static void main(String args[]) {
-
-        int userCount = 0;
-        int deskCount = 0;
-        Document userDocument = null;
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
-            MongoDatabase database = mongoClient.getDatabase("Library");
-
-            MongoCollection<Document> usersCollection = database.getCollection("users");
-            userDocument = usersCollection.find(Filters.eq("email", email)).first();
-            if (userDocument != null) {
-                userName.append(userDocument.getString("name"));
-                long creditValue = userDocument.getLong("credit");
-                userCredit.append(String.valueOf(creditValue));
-                long breakLeft = userDocument.getLong("break_left");
-                remainingBreaktimeCount.append(String.valueOf(breakLeft));
-
-            }
-            MongoCollection<Document> roomsCollection = database.getCollection("rooms");
-            List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
-            int i = 0;
-            for (Document room : roomsDocument) {
-
-                System.out.println(room.toJson());
-                Room newRoom = new Room(room.getString("name"), room.getInteger("current_num"), room.getInteger("desk_num"));
-                userCount = userCount + newRoom.getCurrent_num();
-                deskCount = deskCount + newRoom.getDesk_num();
-                rooms[i] = newRoom;
-                i++;
-            }
-            if (deskCount != 0) {
-                int realRate = 0;
-                System.out.println(userCount);
-                System.out.println(deskCount);
-                realRate = 100 * userCount / deskCount;
-                System.out.println(realRate);
-                libraryRate.append(realRate);
-            }
-
-        }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

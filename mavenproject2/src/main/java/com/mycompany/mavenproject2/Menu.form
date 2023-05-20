@@ -320,9 +320,6 @@
                 </Property>
                 <Property name="value" type="int" value="60"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="rateBar.setValue(Integer.parseInt(libraryRate.toString()));"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="rateTitle">
               <Properties>
@@ -372,9 +369,6 @@
                   <Connection code="&quot;A&quot;" type="code"/>
                 </Property>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="nameLabel.setText(userName.toString());"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="rateLabel">
               <Properties>
@@ -383,9 +377,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="75"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="rateLabel.setText(libraryRate.toString());"/>
-              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -512,9 +503,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Salon 1"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_name.setText(rooms[0].getName());"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="room_rate">
                   <Properties>
@@ -523,9 +511,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));"/>
-                  </AuxValues>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel45">
                   <Properties>
@@ -731,9 +716,6 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="/ 21"/>
                   </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="room_rate1.setText(&quot;/ &quot; +String.valueOf(rooms[0].getDesk_num()));"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel43">
                   <Properties>
@@ -3878,9 +3860,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="3"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="remaining_break_count_label.setText(remainingBreaktimeCount.toString());"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
@@ -3897,9 +3876,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="10"/>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="credit_label.setText(userCredit.toString());"/>
-              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
