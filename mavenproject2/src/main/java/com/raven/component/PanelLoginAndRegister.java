@@ -34,7 +34,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     public void saveToMongoDB(String name, String surname, String email, String password) {
         // MongoDB Atlas bağlantı bilgilerini ayarlayın
-        String connectionString = "mongodb+srv://Ayse:ibrahimU123@cluster0.y3msch8.mongodb.net/?retryWrites=true&w=majority";
+        String connectionString = "mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/?retryWrites=true&w=majority";
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))
                 .build();
@@ -71,7 +71,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     private int findUser(String email, String password) {
         // MongoDB Atlas connection settings
-        String connectionString = "mongodb+srv://Ayse:ibrahimU123@cluster0.y3msch8.mongodb.net/?retryWrites=true&w=majority";
+        String connectionString = "mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/?retryWrites=true&w=majority";
         MongoClientSettings settings = MongoClientSettings.builder()
                 .applyConnectionString(new ConnectionString(connectionString))
                 .build();
