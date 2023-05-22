@@ -117,7 +117,7 @@ public class Menu extends javax.swing.JFrame {
         int userCount = 0;
         int deskCount = 0;
         Document userDocument = null;
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
             MongoCollection<Document> lineCollection = database.getCollection("line");
             lineMembers = new ArrayList<>();
@@ -3645,7 +3645,7 @@ public class Menu extends javax.swing.JFrame {
                     System.out.println(name);
                     System.out.println(break_left);
                     showNoBreakLeftAlert("15 dakikalık molanız başladı!");
-                    try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+                    try (MongoClient mongoClient = MongoClients.create("mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
                         MongoDatabase database = mongoClient.getDatabase("Library");
                         MongoCollection<Document> userCollection = database.getCollection("users");
                         Document query = new Document("email", myUser.getEmail());
@@ -3693,7 +3693,7 @@ public class Menu extends javax.swing.JFrame {
 
             if (targetRoom != null && targetDesk != null) {
                 targetDesk.setOwnerId(memberID);
-                try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+                try (MongoClient mongoClient = MongoClients.create("mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
                     MongoDatabase database = mongoClient.getDatabase("Library");
                     MongoCollection<Document> roomsCollection = database.getCollection("rooms");
                     Document filter = new Document("room_no", targetRoomNo);
@@ -3806,7 +3806,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void leaveDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveDeskActionPerformed
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
             MongoCollection<Document> roomsCollection = database.getCollection("rooms");
             Document filter = new Document("room_no", myUser.getRoom());
@@ -3893,7 +3893,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void getInLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInLineButtonActionPerformed
         if (!lineMembers.contains(myUser.getId())) {
-            try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            try (MongoClient mongoClient = MongoClients.create("mongodb+srv://***:***@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
                 MongoDatabase database = mongoClient.getDatabase("Library");
                 MongoCollection<Document> lineCollection = database.getCollection("line");
                 lineMembers.add(myUser.getId());
