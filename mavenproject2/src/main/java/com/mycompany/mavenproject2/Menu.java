@@ -3627,40 +3627,42 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         //Mola al - 15 dakikalık timer oluştur
-        SecondTimer timer = new SecondTimer();
-        if (!breakInProgress) {
-            // Mola al - 15 dakikalık timer oluştur
-            int break_left = myUser.getBreak_left();
-            String name = myUser.getName();
-            jLabel7.setEnabled(true);
+        if (myUser.getDesk() != -1) {
+            SecondTimer timer = new SecondTimer();
+            if (!breakInProgress) {
+                // Mola al - 15 dakikalık timer oluştur
+                int break_left = myUser.getBreak_left();
+                String name = myUser.getName();
+                jLabel7.setEnabled(true);
 
-            if (break_left > 0) {
-                breakInProgress = true;
-                // Disable the "Mola başlat" button
-                jLabel5.setEnabled(!breakInProgress);
-                Document userDocument = null;
-                break_left = break_left - 1;
-                myUser.setBreak_left(break_left);
-                System.out.println(name);
-                System.out.println(break_left);
-                showNoBreakLeftAlert("15 dakikalık molanız başladı!");
-                try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
-                    MongoDatabase database = mongoClient.getDatabase("Library");
-                    MongoCollection<Document> userCollection = database.getCollection("users");
-                    Document query = new Document("email", myUser.getEmail());
-                    Document updatedDocument = new Document("$set", new Document("break_left", break_left));
-                    userCollection.updateOne(query, updatedDocument);
-                    mongoClient.close();
-                    remaining_break_count_label.setText(String.valueOf(break_left));
+                if (break_left > 0) {
+                    breakInProgress = true;
+                    // Disable the "Mola başlat" button
+                    jLabel5.setEnabled(!breakInProgress);
+                    Document userDocument = null;
+                    break_left = break_left - 1;
+                    myUser.setBreak_left(break_left);
+                    System.out.println(name);
+                    System.out.println(break_left);
+                    showNoBreakLeftAlert("15 dakikalık molanız başladı!");
+                    try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+                        MongoDatabase database = mongoClient.getDatabase("Library");
+                        MongoCollection<Document> userCollection = database.getCollection("users");
+                        Document query = new Document("email", myUser.getEmail());
+                        Document updatedDocument = new Document("$set", new Document("break_left", break_left));
+                        userCollection.updateOne(query, updatedDocument);
+                        mongoClient.close();
+                        remaining_break_count_label.setText(String.valueOf(break_left));
 
+                    }
+
+                } else {
+                    System.out.println("MOLA HAKKI BİTTİ!");
+                    showNoBreakLeftAlert("MOLA HAKKINIZ BİTTİ");
                 }
-
             } else {
-                System.out.println("MOLA HAKKI BİTTİ!");
-                showNoBreakLeftAlert("MOLA HAKKINIZ BİTTİ");
+                showNoBreakLeftAlert("HALA MOLADASINIZ!");
             }
-        } else {
-            showNoBreakLeftAlert("HALA MOLADASINIZ!");
         }
 
 
@@ -3792,12 +3794,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        breakInProgress = false;
-        if (!breakInProgress) {
-            jLabel5.setEnabled(!breakInProgress);
-            timer.stop();
-            System.out.println("Timer stopped.");
-            jLabel7.setEnabled(false);
+        if (myUser.getDesk() != -1) {
+            breakInProgress = false;
+            if (!breakInProgress) {
+                jLabel5.setEnabled(!breakInProgress);
+                timer.stop();
+                System.out.println("Timer stopped.");
+                jLabel7.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -3815,6 +3819,8 @@ public class Menu extends javax.swing.JFrame {
             UpdateResult updateResult = roomsCollection.updateOne(query, update2);
             myUser.setDesk(-1);
             myUser.setRoom(-1);
+            myUser.setBreak_left(3);
+            remaining_break_count_label.setText("3");
             roomInfo.setText("Henüz masa seçilmedi");
             deskInfo.setText("");
             selected_desk.setText("");
@@ -3891,11 +3897,11 @@ public class Menu extends javax.swing.JFrame {
                 MongoDatabase database = mongoClient.getDatabase("Library");
                 MongoCollection<Document> lineCollection = database.getCollection("line");
                 lineMembers.add(myUser.getId());
-                myUser.setLine(lineMembers.size()+1);
+                myUser.setLine(lineMembers.size() + 1);
                 Document updateDocument = new Document("$push", new Document("lineMembers", myUser.getId()));
                 lineCollection.updateOne(new Document(), updateDocument);
                 lineCount.setText(String.valueOf(Integer.parseInt(lineCount.getText()) + 1));
-                JOptionPane.showMessageDialog(null, "Sıraya Girildi! Sıra numaranız: " + myUser.getLine() );
+                JOptionPane.showMessageDialog(null, "Sıraya Girildi! Sıra numaranız: " + myUser.getLine());
             }
         } else {
             JOptionPane.showMessageDialog(null, "Zaten sıradasınız!");

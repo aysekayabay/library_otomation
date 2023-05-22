@@ -110,6 +110,16 @@ public class Member {
 
     public void setBreak_left(int break_left) {
         this.break_left = break_left;
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            MongoDatabase database = mongoClient.getDatabase("Library");
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+            Document query = new Document("email", getEmail());
+            Document updateDocument = new Document("$set", new Document("break_left", break_left));
+            usersCollection.updateOne(query, updateDocument);
+            mongoClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String getEmail() {
