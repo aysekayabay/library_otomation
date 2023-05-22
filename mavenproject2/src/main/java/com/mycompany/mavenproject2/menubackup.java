@@ -100,7 +100,7 @@ public class menubackup extends javax.swing.JFrame {
         int userCount = 0;
         int deskCount = 0;
         Document userDocument = null;
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://**:**@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
             MongoCollection<Document> usersCollection = database.getCollection("users");
             userDocument = usersCollection.find(Filters.eq("email", email)).first();
@@ -3107,7 +3107,7 @@ public class menubackup extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void leaveDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveDeskActionPerformed
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://**:**@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
             MongoCollection<Document> roomsCollection = database.getCollection("rooms");
             Document filter = new Document("room_no", myUser.getRoom());
