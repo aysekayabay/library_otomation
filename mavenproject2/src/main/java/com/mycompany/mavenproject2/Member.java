@@ -1,11 +1,27 @@
 package com.mycompany.mavenproject2;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import static com.mycompany.mavenproject2.Menu.email;
+import static com.mycompany.mavenproject2.Menu.libraryRate;
+import static com.mycompany.mavenproject2.Menu.myUser;
+import static com.mycompany.mavenproject2.Menu.remainingBreaktimeCount;
+import static com.mycompany.mavenproject2.Menu.rooms;
+import static com.mycompany.mavenproject2.Menu.userCredit;
+import static com.mycompany.mavenproject2.Menu.userName;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 public class Member {
 
     //private static int lineCounter = 0;
-    private String id;
+    private ObjectId id;
     private String name;
     private String surname;
     private String email;
@@ -18,7 +34,7 @@ public class Member {
 
     Scanner input = new Scanner(System.in);
 
-    public Member(String name, String surname, String id, String email, int credit, int break_left, boolean banned, int line, int desk, int room) {
+    public Member(String name, String surname, ObjectId id, String email, int credit, int break_left, boolean banned, int line, int desk, int room) {
         this.email = email;
         this.name = name;
         this.surname = surname;
@@ -32,7 +48,7 @@ public class Member {
 
     }
 
-    public Member(String name, String surname, String id, String email) {
+    public Member(String name, String surname, ObjectId id, String email) {
         this.email = email;
         this.name = name;
         this.surname = surname;
@@ -116,7 +132,7 @@ public class Member {
         return surname;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -142,6 +158,17 @@ public class Member {
 
     public void setDesk(int deskNo) {
         this.desk = deskNo;
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            MongoDatabase database = mongoClient.getDatabase("Library");
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+            Document query = new Document("email", getEmail());
+            Document updateDocument = new Document("$set", new Document("desk", deskNo));
+            usersCollection.updateOne(query, updateDocument);
+            mongoClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getRoom() {
@@ -150,6 +177,17 @@ public class Member {
 
     public void setRoom(int roomNo) {
         this.room = roomNo;
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            MongoDatabase database = mongoClient.getDatabase("Library");
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+            Document query = new Document("email", getEmail());
+            Document updateDocument = new Document("$set", new Document("room", roomNo));
+            usersCollection.updateOne(query, updateDocument);
+            mongoClient.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     //public void newLine(int x) {

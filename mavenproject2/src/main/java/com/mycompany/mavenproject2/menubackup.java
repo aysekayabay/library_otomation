@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.mycompany.mavenproject2;
 
 import com.mongodb.client.MongoClient;
@@ -5,43 +9,34 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
-import static com.mycompany.mavenproject2.menubackup.allDeskWhichIsNotFull;
-import static com.mycompany.mavenproject2.menubackup.email;
-import static com.mycompany.mavenproject2.menubackup.libraryRate;
-import static com.mycompany.mavenproject2.menubackup.myUser;
-import static com.mycompany.mavenproject2.menubackup.remainingBreaktimeCount;
-import static com.mycompany.mavenproject2.menubackup.rooms;
-import static com.mycompany.mavenproject2.menubackup.userCredit;
-import static com.mycompany.mavenproject2.menubackup.userName;
+import static com.mycompany.mavenproject2.Menu.allDeskWhichIsNotFull;
+import static com.mycompany.mavenproject2.Menu.email;
+import static com.mycompany.mavenproject2.Menu.libraryRate;
+import static com.mycompany.mavenproject2.Menu.myUser;
+import static com.mycompany.mavenproject2.Menu.remainingBreaktimeCount;
+import static com.mycompany.mavenproject2.Menu.rooms;
+import static com.mycompany.mavenproject2.Menu.userCredit;
+import static com.mycompany.mavenproject2.Menu.userName;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
-import java.util.*;
-import javax.swing.JLabel;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import org.bson.Document;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import org.bson.types.ObjectId;
 
 /**
  *
  * @author ayse
  */
-public class Menu extends javax.swing.JFrame {
+public class menubackup extends javax.swing.JFrame {
 
-    static ArrayList<Component> allDeskWhichIsNotFull;
-    private boolean breakInProgress = false;
-    private JLabel warningLabel;
-    private javax.swing.Timer timer;
-    private int delay = 5000;
     static Member myUser;
     static String email;
     static Room[] rooms = new Room[3];
+    static ArrayList<Component> allDeskWhichIsNotFull;
     static StringBuilder userName = new StringBuilder("q");
     static StringBuilder remainingBreaktimeCount = new StringBuilder("-1");
     static StringBuilder userCredit = new StringBuilder("-1");
@@ -50,13 +45,6 @@ public class Menu extends javax.swing.JFrame {
     Color deskFilledColor = new Color(153, 0, 255);
     Color roomFilledColor = new Color(217, 166, 166);
     Color roomBaseColor = new Color(248, 226, 226);
-
-    private void setAllBackgroundColors(Color color) {
-        Component[] components = {r1d1, r1d2, r1d3, r1d4, r1d5, r1d6, r1d7, r1d8, r1d9, r1d10, r1d11, r1d12, r1d13, r1d14, r1d15, r1d16, r1d17, r1d18, r1d19, r1d20, r1d21, r2d1, r2d2, r2d3, r2d4, r2d5, r2d6, r2d7, r2d8, r2d9, r2d10, r2d11, r2d12, r2d13, r2d14, r2d15, r2d16, r2d17, r2d18, r2d19, r2d20, r2d21, r3d1, r3d2, r3d3, r3d4, r3d5, r3d6, r3d7, r3d8, r3d9, r3d10, r3d11, r3d12, r3d13, r3d14, r3d15, r3d16, r3d17, r3d18, r3d19, r3d20, r3d21};
-        for (Component component : components) {
-            component.setBackground(color);
-        }
-    }
 
     private void chooseDesk(Component comp, int selectedD, int selectedR) {
         if (myUser.getDesk() == -1) {
@@ -101,11 +89,10 @@ public class Menu extends javax.swing.JFrame {
         }
     }
 
-    public Menu(String email) {
+    public menubackup(String email) {
         initComponents();
         this.email = email;
         setUpdates();
-
     }
 
     public void setUpdates() {
@@ -161,7 +148,7 @@ public class Menu extends javax.swing.JFrame {
         }
 
         room_name.setText(rooms[0].getName());
-        room_rate1.setText("/ " + String.valueOf(rooms[0].getDesk_num()));
+        room_rate_base.setText("/ " + String.valueOf(rooms[0].getDesk_num()));
         room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
         if (userName.length() > 0) {
             nameLabel.setText(userName.toString());
@@ -221,45 +208,6 @@ public class Menu extends javax.swing.JFrame {
 
     }
 
-    public class SecondTimer {
-
-        private static int count = 0;
-
-        public static void main(String[] args) {
-            javax.swing.Timer timer = new javax.swing.Timer(1000, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    count++;
-                    System.out.println("Seconds: " + count);
-                }
-            });
-
-            timer.start();
-        }
-    }
-
-    private void showNoBreakLeftAlert(String message) {
-        if (timer != null && timer.isRunning()) {
-            // Timer is already running, no need to start it again
-            return;
-        }
-
-        // Create the warning label
-        JLabel warningLabel = new JLabel(message);
-        warningLabel.setForeground(Color.RED);
-        warningLabel.setFont(new Font("sansserif", Font.BOLD, 14));
-
-        // Show a custom dialog
-        JOptionPane.showMessageDialog(null, warningLabel, "MESSAGE", JOptionPane.PLAIN_MESSAGE);
-
-        timer = new javax.swing.Timer(delay, event -> {
-            // Perform any additional actions after the delay
-        });
-        timer.setRepeats(false); // No need to repeat
-
-        timer.start();
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -287,8 +235,8 @@ public class Menu extends javax.swing.JFrame {
         nameLabel = new javax.swing.JLabel();
         rateLabel = new javax.swing.JLabel();
         leaveDesk = new javax.swing.JButton();
-        roomInfo = new javax.swing.JLabel();
         deskInfo = new javax.swing.JLabel();
+        roomInfo = new javax.swing.JLabel();
         seatPage = new javax.swing.JPanel();
         room_header = new javax.swing.JPanel();
         room_name = new javax.swing.JLabel();
@@ -304,7 +252,7 @@ public class Menu extends javax.swing.JFrame {
         room3Button = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        room_rate1 = new javax.swing.JLabel();
+        room_rate_base = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         selected_room = new javax.swing.JLabel();
         room = new javax.swing.JPanel();
@@ -622,9 +570,9 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        roomInfo.setText("Henüz masa seçilmedi");
-
         deskInfo.setText(" ");
+
+        roomInfo.setText("Henüz masa seçilmedi");
 
         javax.swing.GroupLayout homePageLayout = new javax.swing.GroupLayout(homePage);
         homePage.setLayout(homePageLayout);
@@ -638,7 +586,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nameLabel)
                         .addContainerGap(334, Short.MAX_VALUE))
-                    .addGroup(homePageLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createSequentialGroup()
                         .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(line, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                             .addGroup(homePageLayout.createSequentialGroup()
@@ -646,7 +594,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(homePageLayout.createSequentialGroup()
                                         .addComponent(leaveDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(homePageLayout.createSequentialGroup()
                                         .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -656,15 +604,14 @@ public class Menu extends javax.swing.JFrame {
                                         .addComponent(rate)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(rateLabel)))))
-                        .addGap(24, 24, 24))
+                        .addGap(24, 24, 24))))
+            .addGroup(homePageLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(homePageLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(homePageLayout.createSequentialGroup()
-                                .addComponent(deskInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(roomInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(deskInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(roomInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         homePageLayout.setVerticalGroup(
             homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -679,11 +626,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(nameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(roomInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deskInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createSequentialGroup()
                         .addComponent(rateTitle)
@@ -722,15 +669,20 @@ public class Menu extends javax.swing.JFrame {
         jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel67.setText("Onayla");
         jLabel67.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel67.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel67MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout approveButtonLayout = new javax.swing.GroupLayout(approveButton);
         approveButton.setLayout(approveButtonLayout);
         approveButtonLayout.setHorizontalGroup(
             approveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(approveButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel67, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(27, 27, 27)
+                .addComponent(jLabel67)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         approveButtonLayout.setVerticalGroup(
             approveButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -832,8 +784,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel44.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel44.setText("Salonlar");
 
-        room_rate1.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        room_rate1.setText("/ 21");
+        room_rate_base.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        room_rate_base.setText("/ 21");
 
         jLabel43.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel43.setText("Seçtiğin oda:");
@@ -850,13 +802,13 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(room_headerLayout.createSequentialGroup()
                         .addComponent(room_rate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(room_rate1)
+                        .addComponent(room_rate_base)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selected_desk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(room_headerLayout.createSequentialGroup()
-                        .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -884,7 +836,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createSequentialGroup()
                         .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -894,7 +846,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(room_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(room_rate1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(room_rate_base, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(selected_desk)
                         .addComponent(jLabel42))
@@ -1181,6 +1133,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        r1d11.setName("r1d11");
         r1d11.setBackground(new java.awt.Color(204, 204, 255));
         r1d11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3019,19 +2972,12 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel5.getAccessibleContext().setAccessibleDescription("");
-
         endBreakButton.setBackground(new java.awt.Color(204, 204, 255));
         endBreakButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setBackground(new java.awt.Color(204, 204, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Molayı Bitir");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout endBreakButtonLayout = new javax.swing.GroupLayout(endBreakButton);
         endBreakButton.setLayout(endBreakButtonLayout);
@@ -3099,7 +3045,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(breaktimePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(takeBreakButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         page.add(breaktimePage);
@@ -3116,7 +3062,7 @@ public class Menu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(leftbar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(page, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(page, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
         );
 
         pack();
@@ -3129,7 +3075,6 @@ public class Menu extends javax.swing.JFrame {
         home.setBackground(Color.WHITE);
         seat.setBackground(deskBaseColor);
         breaktime.setBackground(deskBaseColor);
-
     }//GEN-LAST:event_homeMouseClicked
 
     private void seatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seatMouseClicked
@@ -3140,7 +3085,6 @@ public class Menu extends javax.swing.JFrame {
         home.setBackground(deskBaseColor);
         breaktime.setBackground(deskBaseColor);
 
-
     }//GEN-LAST:event_seatMouseClicked
 
     private void breaktimeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_breaktimeMouseClicked
@@ -3150,7 +3094,6 @@ public class Menu extends javax.swing.JFrame {
         breaktime.setBackground(Color.WHITE);
         home.setBackground(deskBaseColor);
         seat.setBackground(deskBaseColor);
-
     }//GEN-LAST:event_breaktimeMouseClicked
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
@@ -3159,457 +3102,85 @@ public class Menu extends javax.swing.JFrame {
         loginFrame.setVisible(true);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
-    private void r1d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d21MouseClicked
-        chooseDesk(r1d21, 21, 1);
-
-    }//GEN-LAST:event_r1d21MouseClicked
-
-    private void r1d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d20MouseClicked
-        chooseDesk(r1d20, 20, 1);
-
-
-    }//GEN-LAST:event_r1d20MouseClicked
-
-    private void r1d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d19MouseClicked
-        chooseDesk(r1d19, 19, 1);
-
-
-    }//GEN-LAST:event_r1d19MouseClicked
-
-    private void r1d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d18MouseClicked
-        chooseDesk(r1d18, 18, 1);
-
-
-    }//GEN-LAST:event_r1d18MouseClicked
-
-    private void r1d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d17MouseClicked
-        chooseDesk(r1d17, 17, 1);
-
-
-    }//GEN-LAST:event_r1d17MouseClicked
-
-    private void r1d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d16MouseClicked
-        chooseDesk(r1d16, 16, 1);
-
-
-    }//GEN-LAST:event_r1d16MouseClicked
-
-    private void r1d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d15MouseClicked
-        chooseDesk(r1d15, 15, 1);
-
-
-    }//GEN-LAST:event_r1d15MouseClicked
-
-    private void r1d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d9MouseClicked
-        chooseDesk(r1d9, 9, 1);
-
-
-    }//GEN-LAST:event_r1d9MouseClicked
-
-    private void r1d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d12MouseClicked
-        chooseDesk(r1d12, 12, 1);
-
-
-    }//GEN-LAST:event_r1d12MouseClicked
-
-    private void r1d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d13MouseClicked
-        chooseDesk(r1d13, 13, 1);
-
-
-    }//GEN-LAST:event_r1d13MouseClicked
-
-    private void r1d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d11MouseClicked
-        chooseDesk(r1d11, 11, 1);
-
-
-    }//GEN-LAST:event_r1d11MouseClicked
-
-    private void r1d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d10MouseClicked
-        chooseDesk(r1d10, 10, 1);
-
-
-    }//GEN-LAST:event_r1d10MouseClicked
-
-    private void r1d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d8MouseClicked
-        chooseDesk(r1d8, 8, 1);
-
-
-    }//GEN-LAST:event_r1d8MouseClicked
-
-    private void r1d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d14MouseClicked
-        chooseDesk(r1d14, 14, 1);
-
-
-    }//GEN-LAST:event_r1d14MouseClicked
-
-    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
-        chooseDesk(r1d2, 2, 1);
-
-
-    }//GEN-LAST:event_r1d2MouseClicked
-
-    private void r1d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d6MouseClicked
-        chooseDesk(r1d6, 6, 1);
-
-
-    }//GEN-LAST:event_r1d6MouseClicked
-
-    private void r1d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d1MouseClicked
-        chooseDesk(r1d1, 1, 1);
-
-
-    }//GEN-LAST:event_r1d1MouseClicked
-
-    private void r1d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d3MouseClicked
-        chooseDesk(r1d3, 3, 1);
-
-
-    }//GEN-LAST:event_r1d3MouseClicked
-
-    private void r1d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d4MouseClicked
-        chooseDesk(r1d4, 4, 1);
-
-
-    }//GEN-LAST:event_r1d4MouseClicked
-
-    private void r1d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d5MouseClicked
-        chooseDesk(r1d5, 5, 1);
-
-
-    }//GEN-LAST:event_r1d5MouseClicked
-
-    private void r1d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d7MouseClicked
-        chooseDesk(r1d7, 7, 1);
-
-
-    }//GEN-LAST:event_r1d7MouseClicked
-
-    private void r2d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d7MouseClicked
-        chooseDesk(r2d7, 7, 2);
-
-
-    }//GEN-LAST:event_r2d7MouseClicked
-
-    private void r2d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d5MouseClicked
-        chooseDesk(r2d5, 5, 2);
-
-
-    }//GEN-LAST:event_r2d5MouseClicked
-
-    private void r2d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d4MouseClicked
-        chooseDesk(r2d4, 4, 2);
-
-
-    }//GEN-LAST:event_r2d4MouseClicked
-
-    private void r2d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d3MouseClicked
-        chooseDesk(r2d3, 3, 2);
-
-
-    }//GEN-LAST:event_r2d3MouseClicked
-
-    private void r2d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d1MouseClicked
-        chooseDesk(r2d1, 1, 2);
-
-    }//GEN-LAST:event_r2d1MouseClicked
-
-    private void r2d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d6MouseClicked
-
-        chooseDesk(r2d6, 6, 2);
-
-    }//GEN-LAST:event_r2d6MouseClicked
-
-    private void r2d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d2MouseClicked
-        chooseDesk(r2d2, 2, 2);
-
-
-    }//GEN-LAST:event_r2d2MouseClicked
-
-    private void r2d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d14MouseClicked
-        chooseDesk(r2d14, 14, 2);
-
-
-    }//GEN-LAST:event_r2d14MouseClicked
-
-    private void r2d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d8MouseClicked
-        chooseDesk(r2d8, 8, 2);
-
-
-    }//GEN-LAST:event_r2d8MouseClicked
-
-    private void r2d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d10MouseClicked
-        chooseDesk(r2d10, 10, 2);
-
-    }//GEN-LAST:event_r2d10MouseClicked
-
-    private void r2d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d11MouseClicked
-        chooseDesk(r2d11, 11, 2);
-
-
-    }//GEN-LAST:event_r2d11MouseClicked
-
-    private void r2d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d13MouseClicked
-        chooseDesk(r2d13, 13, 2);
-
-
-    }//GEN-LAST:event_r2d13MouseClicked
-
-    private void r2d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d12MouseClicked
-        chooseDesk(r2d12, 12, 2);
-
-
-    }//GEN-LAST:event_r2d12MouseClicked
-
-    private void r2d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d9MouseClicked
-        chooseDesk(r2d9, 9, 2);
-
-    }//GEN-LAST:event_r2d9MouseClicked
-
-    private void r2d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d15MouseClicked
-        chooseDesk(r2d15, 15, 2);
-
-
-    }//GEN-LAST:event_r2d15MouseClicked
-
-    private void r2d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d16MouseClicked
-        chooseDesk(r2d16, 16, 2);
-
-
-    }//GEN-LAST:event_r2d16MouseClicked
-
-    private void r2d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d17MouseClicked
-        chooseDesk(r2d17, 17, 2);
-
-
-    }//GEN-LAST:event_r2d17MouseClicked
-
-    private void r2d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d18MouseClicked
-
-        chooseDesk(r2d18, 18, 2);
-
-    }//GEN-LAST:event_r2d18MouseClicked
-
-    private void r2d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d19MouseClicked
-        chooseDesk(r2d19, 19, 2);
-
-
-    }//GEN-LAST:event_r2d19MouseClicked
-
-    private void r2d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d20MouseClicked
-        chooseDesk(r2d20, 20, 2);
-
-
-    }//GEN-LAST:event_r2d20MouseClicked
-
-    private void r2d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d21MouseClicked
-        chooseDesk(r2d21, 21, 2);
-
-    }//GEN-LAST:event_r2d21MouseClicked
-
-    private void r3d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d7MouseClicked
-        chooseDesk(r3d7, 7, 3);
-
-
-    }//GEN-LAST:event_r3d7MouseClicked
-
-    private void r3d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d5MouseClicked
-        chooseDesk(r3d5, 5, 3);
-
-
-    }//GEN-LAST:event_r3d5MouseClicked
-
-    private void r3d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d4MouseClicked
-        chooseDesk(r3d4, 4, 3);
-
-
-    }//GEN-LAST:event_r3d4MouseClicked
-
-    private void r3d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d3MouseClicked
-        chooseDesk(r3d1, 1, 3);
-
-
-    }//GEN-LAST:event_r3d3MouseClicked
-
-    private void r3d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d1MouseClicked
-        chooseDesk(r3d1, 1, 3);
-
-
-    }//GEN-LAST:event_r3d1MouseClicked
-
-    private void r3d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d6MouseClicked
-        chooseDesk(r3d6, 6, 3);
-
-
-    }//GEN-LAST:event_r3d6MouseClicked
-
-    private void r3d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d2MouseClicked
-        chooseDesk(r3d2, 2, 3);
-
-
-    }//GEN-LAST:event_r3d2MouseClicked
-
-    private void r3d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d14MouseClicked
-        chooseDesk(r3d14, 14, 3);
-
-    }//GEN-LAST:event_r3d14MouseClicked
-
-    private void r3d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d8MouseClicked
-        chooseDesk(r3d8, 8, 3);
-
-
-    }//GEN-LAST:event_r3d8MouseClicked
-
-    private void r3d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d10MouseClicked
-        chooseDesk(r3d10, 10, 3);
-
-
-    }//GEN-LAST:event_r3d10MouseClicked
-
-    private void r3d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d11MouseClicked
-        chooseDesk(r3d11, 11, 3);
-
-
-    }//GEN-LAST:event_r3d11MouseClicked
-
-    private void r3d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d13MouseClicked
-        chooseDesk(r3d13, 13, 3);
-
-
-    }//GEN-LAST:event_r3d13MouseClicked
-
-    private void r3d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d12MouseClicked
-        chooseDesk(r3d12, 12, 3);
-
-
-    }//GEN-LAST:event_r3d12MouseClicked
-
-    private void r3d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d9MouseClicked
-        chooseDesk(r3d9, 9, 3);
-
-
-    }//GEN-LAST:event_r3d9MouseClicked
-
-    private void r3d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d15MouseClicked
-        chooseDesk(r3d15, 15, 3);
-
-
-    }//GEN-LAST:event_r3d15MouseClicked
-
-    private void r3d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d16MouseClicked
-        chooseDesk(r3d16, 16, 3);
-
-
-    }//GEN-LAST:event_r3d16MouseClicked
-
-    private void r3d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d17MouseClicked
-        chooseDesk(r3d17, 17, 3);
-
-
-    }//GEN-LAST:event_r3d17MouseClicked
-
-    private void r3d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d18MouseClicked
-        chooseDesk(r3d18, 18, 3);
-
-
-    }//GEN-LAST:event_r3d18MouseClicked
-
-    private void r3d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d19MouseClicked
-        chooseDesk(r3d19, 19, 3);
-
-
-    }//GEN-LAST:event_r3d19MouseClicked
-
-    private void r3d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d20MouseClicked
-
-        chooseDesk(r3d20, 20, 3);
-
-
-    }//GEN-LAST:event_r3d20MouseClicked
-
-    private void r3d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d21MouseClicked
-        chooseDesk(r3d21, 21, 3);
-
-    }//GEN-LAST:event_r3d21MouseClicked
-
-    private void room2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room2ButtonMouseClicked
-        room2Button.setBackground(roomFilledColor);
-        room1Button.setBackground(roomBaseColor);
-        room3Button.setBackground(roomBaseColor);
-        seat_area1.setVisible(false);
-        seat_area2.setVisible(true);
-        seat_area3.setVisible(false);
-        room_name.setText(rooms[1].getName());
-        room_rate.setText(String.valueOf(rooms[1].getCurrent_num()));
-
-
-    }//GEN-LAST:event_room2ButtonMouseClicked
-
-    private void room1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room1ButtonMouseClicked
-        room2Button.setBackground(roomBaseColor);
-        room1Button.setBackground(roomFilledColor);
-        seat_area1.setVisible(true);
-        seat_area2.setVisible(false);
-        seat_area3.setVisible(false);
-        room_name.setText(rooms[0].getName());
-        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
-        room3Button.setBackground(roomBaseColor);    }//GEN-LAST:event_room1ButtonMouseClicked
-
-    private void room3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room3ButtonMouseClicked
-        room2Button.setBackground(roomBaseColor);
-        room1Button.setBackground(roomBaseColor);
-        room3Button.setBackground(roomFilledColor);
-        seat_area1.setVisible(false);
-        seat_area2.setVisible(false);
-        seat_area3.setVisible(true);
-        room_name.setText(rooms[2].getName());
-        room_rate.setText(String.valueOf(rooms[2].getCurrent_num()));
-
-    }//GEN-LAST:event_room3ButtonMouseClicked
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel10MouseClicked
-
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        //Mola al - 15 dakikalık timer oluştur
-        SecondTimer timer = new SecondTimer();
-        if (!breakInProgress) {
-            // Mola al - 15 dakikalık timer oluştur
-            int break_left = myUser.getBreak_left();
-            String name = myUser.getName();
-            if (break_left > 0) {
-                breakInProgress = true;
-                // Disable the "Mola başlat" button
-                jLabel5.setEnabled(!breakInProgress);
-                Document userDocument = null;
-                break_left = break_left - 1;
-                myUser.setBreak_left(break_left);
-                System.out.println(name);
-                System.out.println(break_left);
-                showNoBreakLeftAlert("15 dakikalık molanız başladı!");
-                try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
-                    MongoDatabase database = mongoClient.getDatabase("Library");
-                    MongoCollection<Document> userCollection = database.getCollection("users");
-                    Document query = new Document("email", myUser.getEmail());
-                    Document updatedDocument = new Document("$set", new Document("break_left", break_left));
-                    userCollection.updateOne(query, updatedDocument);
-                    mongoClient.close();
-                    remaining_break_count_label.setText(String.valueOf(break_left));
-
+    private void leaveDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveDeskActionPerformed
+        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+            MongoDatabase database = mongoClient.getDatabase("Library");
+            MongoCollection<Document> roomsCollection = database.getCollection("rooms");
+            Document filter = new Document("room_no", myUser.getRoom());
+            Document update1 = new Document("$inc", new Document("current_num", -1));
+            roomsCollection.updateOne(filter, update1);
+            Document query = new Document("room_no", myUser.getRoom())
+                    .append("desks.deskNo", myUser.getDesk());
+            Document update2 = new Document("$set", new Document("desks.$.ownerId", "")
+                    .append("desks.$.isAvailable", true));
+            UpdateResult updateResult = roomsCollection.updateOne(query, update2);
+            myUser.setDesk(-1);
+            myUser.setRoom(-1);
+            JOptionPane.showMessageDialog(null, "Masadan ayrıldınız! İyi günler...", "WARNING", JOptionPane.PLAIN_MESSAGE);
+            roomInfo.setText("Henüz masa seçilmedi");
+            deskInfo.setText("");
+            leaveDesk.setEnabled(false);
+            int i = 0;
+            int userCount = 0;
+            int deskCount = 0;
+            List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
+
+            for (Document room : roomsDocument) {
+                Room newRoom = new Room(room.getString("name"), room.getInteger("room_no"), room.getInteger("current_num"), room.getInteger("desk_num"));
+                userCount = userCount + newRoom.getCurrent_num();
+                deskCount = deskCount + newRoom.getDesk_num();
+
+                List<Document> deskDocuments = room.getList("desks", Document.class);
+                List<Desk> allDesks = new ArrayList<>();
+                for (Document desk : deskDocuments) {
+                    Desk newDesk = new Desk(desk.getInteger("deskNo"));
+                    newDesk.setAvailable(desk.getBoolean("isAvailable"));
+                    newDesk.setOwnerId(desk.getObjectId("_id"));
+                    allDesks.add(newDesk);
                 }
-
-            } else {
-                System.out.println("MOLA HAKKI BİTTİ!");
-                showNoBreakLeftAlert("MOLA HAKKINIZ BİTTİ");
+                newRoom.setDesks(allDesks);
+                rooms[i] = newRoom;
+                i++;
             }
-        } else {
-            showNoBreakLeftAlert("HALA MOLADASINIZ!");
+
+            if (deskCount != 0) {
+                int realRate = 0;
+                realRate = 100 * userCount / deskCount;
+                libraryRate.setLength(0);
+                libraryRate.append(realRate);
+
+            }
+            if (libraryRate.length() > 0) {
+                rateLabel.setText(libraryRate.toString());
+                rateBar.setValue(Integer.parseInt(libraryRate.toString()));
+
+            }
+
+            int roomIndex = 1;
+            int deskIndex = 1;
+            allDeskWhichIsNotFull.clear();
+            Component[] components = {r1d1, r1d2, r1d3, r1d4, r1d5, r1d6, r1d7, r1d8, r1d9, r1d10, r1d11, r1d12, r1d13, r1d14, r1d15, r1d16, r1d17, r1d18, r1d19, r1d20, r1d21, r2d1, r2d2, r2d3, r2d4, r2d5, r2d6, r2d7, r2d8, r2d9, r2d10, r2d11, r2d12, r2d13, r2d14, r2d15, r2d16, r2d17, r2d18, r2d19, r2d20, r2d21, r3d1, r3d2, r3d3, r3d4, r3d5, r3d6, r3d7, r3d8, r3d9, r3d10, r3d11, r3d12, r3d13, r3d14, r3d15, r3d16, r3d17, r3d18, r3d19, r3d20, r3d21};
+            for (Component component : components) {
+                String componentName = "r" + roomIndex + "d" + deskIndex;
+                component.setName(componentName);
+                allDeskWhichIsNotFull.add(component);
+                deskIndex++;
+                if (deskIndex > 21) {
+                    deskIndex = 1;
+                    roomIndex++;
+                }
+            }
+
+            paintFullDesks(rooms);
         }
+    }//GEN-LAST:event_leaveDeskActionPerformed
 
-
-    }//GEN-LAST:event_jLabel5MouseClicked
+    private void jLabel67MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel67MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel67MouseClicked
 
     private void approveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_approveButtonMouseClicked
+
         if (!selected_desk.getText().isEmpty()) {
             myUser.setRoom(Integer.parseInt(selected_room.getText()));
             myUser.setDesk(Integer.parseInt(selected_desk.getText()));
@@ -3730,99 +3301,388 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Henüz masa seçmediniz!", "WARNING", JOptionPane.PLAIN_MESSAGE);
 
         }
+
     }//GEN-LAST:event_approveButtonMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void room1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room1ButtonMouseClicked
+        room2Button.setBackground(roomBaseColor);
+        room1Button.setBackground(roomFilledColor);
+        seat_area1.setVisible(true);
+        seat_area2.setVisible(false);
+        seat_area3.setVisible(false);
+        room_name.setText(rooms[0].getName());
+        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
+    }//GEN-LAST:event_room1ButtonMouseClicked
+
+    private void room2ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room2ButtonMouseClicked
+        room2Button.setBackground(roomFilledColor);
+        room1Button.setBackground(roomBaseColor);
+        room3Button.setBackground(roomBaseColor);
+        seat_area1.setVisible(false);
+        seat_area2.setVisible(true);
+        seat_area3.setVisible(false);
+        room_name.setText(rooms[1].getName());
+        room_rate.setText(String.valueOf(rooms[1].getCurrent_num()));
+
+    }//GEN-LAST:event_room2ButtonMouseClicked
+
+    private void room3ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_room3ButtonMouseClicked
+        room2Button.setBackground(roomBaseColor);
+        room1Button.setBackground(roomBaseColor);
+        room3Button.setBackground(roomFilledColor);
+        seat_area1.setVisible(false);
+        seat_area2.setVisible(false);
+        seat_area3.setVisible(true);
+        room_name.setText(rooms[2].getName());
+        room_rate.setText(String.valueOf(rooms[2].getCurrent_num()));
+    }//GEN-LAST:event_room3ButtonMouseClicked
+
+    private void r1d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d7MouseClicked
+        chooseDesk(r1d7, 7, 1);
+
+    }//GEN-LAST:event_r1d7MouseClicked
+
+    private void r1d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d5MouseClicked
+        chooseDesk(r1d5, 5, 1);
+
+    }//GEN-LAST:event_r1d5MouseClicked
+
+    private void r1d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d4MouseClicked
+        chooseDesk(r1d4, 4, 1);
+
+    }//GEN-LAST:event_r1d4MouseClicked
+
+    private void r1d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d3MouseClicked
+        chooseDesk(r1d3, 3, 1);
+
+    }//GEN-LAST:event_r1d3MouseClicked
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        breakInProgress = false;
-        jLabel5.setEnabled(!breakInProgress);
-        timer.stop();
-        System.out.println("Timer stopped.");
+    }//GEN-LAST:event_jLabel10MouseClicked
 
-    }//GEN-LAST:event_jLabel7MouseClicked
+    private void r1d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d1MouseClicked
+        chooseDesk(r1d1, 1, 1);
 
-    private void leaveDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveDeskActionPerformed
-        try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
-            MongoDatabase database = mongoClient.getDatabase("Library");
-            MongoCollection<Document> roomsCollection = database.getCollection("rooms");
-            Document filter = new Document("room_no", myUser.getRoom());
-            Document update1 = new Document("$inc", new Document("current_num", -1));
-            roomsCollection.updateOne(filter, update1);
-            Document query = new Document("room_no", myUser.getRoom())
-                    .append("desks.deskNo", myUser.getDesk());
-            Document update2 = new Document("$set", new Document("desks.$.ownerId", "")
-                    .append("desks.$.isAvailable", true));
-            UpdateResult updateResult = roomsCollection.updateOne(query, update2);
-            myUser.setDesk(-1);
-            myUser.setRoom(-1);
-            JOptionPane.showMessageDialog(null, "Masadan ayrıldınız! İyi günler...", "WARNING", JOptionPane.PLAIN_MESSAGE);
-            roomInfo.setText("Henüz masa seçilmedi");
-            deskInfo.setText("");
-            leaveDesk.setEnabled(false);
-            int i = 0;
-            int userCount = 0;
-            int deskCount = 0;
-            List<Document> roomsDocument = roomsCollection.find().into(new ArrayList<Document>());
+    }//GEN-LAST:event_r1d1MouseClicked
 
-            for (Document room : roomsDocument) {
-                Room newRoom = new Room(room.getString("name"), room.getInteger("room_no"), room.getInteger("current_num"), room.getInteger("desk_num"));
-                userCount = userCount + newRoom.getCurrent_num();
-                deskCount = deskCount + newRoom.getDesk_num();
+    private void r1d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d6MouseClicked
+        chooseDesk(r1d6, 6, 1);
 
-                List<Document> deskDocuments = room.getList("desks", Document.class);
-                List<Desk> allDesks = new ArrayList<>();
-                for (Document desk : deskDocuments) {
-                    Desk newDesk = new Desk(desk.getInteger("deskNo"));
-                    newDesk.setAvailable(desk.getBoolean("isAvailable"));
-                    newDesk.setOwnerId(desk.getObjectId("_id"));
-                    allDesks.add(newDesk);
-                }
-                newRoom.setDesks(allDesks);
-                rooms[i] = newRoom;
-                i++;
-            }
+    }//GEN-LAST:event_r1d6MouseClicked
 
-            if (deskCount != 0) {
-                int realRate = 0;
-                realRate = 100 * userCount / deskCount;
-                libraryRate.setLength(0);
-                libraryRate.append(realRate);
+    private void r1d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d2MouseClicked
+        chooseDesk(r1d2, 2, 1);
 
-            }
-            if (libraryRate.length() > 0) {
-                rateLabel.setText(libraryRate.toString());
-                rateBar.setValue(Integer.parseInt(libraryRate.toString()));
+    }//GEN-LAST:event_r1d2MouseClicked
 
-            }
+    private void r1d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d14MouseClicked
+        chooseDesk(r1d14, 14, 1);
 
-            int roomIndex = 1;
-            int deskIndex = 1;
-            allDeskWhichIsNotFull.clear();
-            Component[] components = {r1d1, r1d2, r1d3, r1d4, r1d5, r1d6, r1d7, r1d8, r1d9, r1d10, r1d11, r1d12, r1d13, r1d14, r1d15, r1d16, r1d17, r1d18, r1d19, r1d20, r1d21, r2d1, r2d2, r2d3, r2d4, r2d5, r2d6, r2d7, r2d8, r2d9, r2d10, r2d11, r2d12, r2d13, r2d14, r2d15, r2d16, r2d17, r2d18, r2d19, r2d20, r2d21, r3d1, r3d2, r3d3, r3d4, r3d5, r3d6, r3d7, r3d8, r3d9, r3d10, r3d11, r3d12, r3d13, r3d14, r3d15, r3d16, r3d17, r3d18, r3d19, r3d20, r3d21};
-            for (Component component : components) {
-                String componentName = "r" + roomIndex + "d" + deskIndex;
-                component.setName(componentName);
-                allDeskWhichIsNotFull.add(component);
-                deskIndex++;
-                if (deskIndex > 21) {
-                    deskIndex = 1;
-                    roomIndex++;
-                }
-            }
+    }//GEN-LAST:event_r1d14MouseClicked
 
-            paintFullDesks(rooms);
-        }
-    }//GEN-LAST:event_leaveDeskActionPerformed
+    private void r1d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d8MouseClicked
+        chooseDesk(r1d8, 8, 1);
 
+    }//GEN-LAST:event_r1d8MouseClicked
+
+    private void r1d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d10MouseClicked
+        chooseDesk(r1d10, 10, 1);
+
+    }//GEN-LAST:event_r1d10MouseClicked
+
+    private void r1d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d11MouseClicked
+        chooseDesk(r1d11, 11, 1);
+
+    }//GEN-LAST:event_r1d11MouseClicked
+
+    private void r1d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d13MouseClicked
+        chooseDesk(r1d13, 13, 1);
+    }//GEN-LAST:event_r1d13MouseClicked
+
+    private void r1d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d12MouseClicked
+        chooseDesk(r1d12, 12, 1);
+    }//GEN-LAST:event_r1d12MouseClicked
+
+    private void r1d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d9MouseClicked
+        chooseDesk(r1d9, 9, 1);
+
+    }//GEN-LAST:event_r1d9MouseClicked
+
+    private void r1d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d15MouseClicked
+        chooseDesk(r1d15, 15, 1);
+    }//GEN-LAST:event_r1d15MouseClicked
+
+    private void r1d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d16MouseClicked
+        chooseDesk(r1d16, 16, 1);
+
+    }//GEN-LAST:event_r1d16MouseClicked
+
+    private void r1d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d17MouseClicked
+        chooseDesk(r1d17, 17, 1);
+
+    }//GEN-LAST:event_r1d17MouseClicked
+
+    private void r1d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d18MouseClicked
+        chooseDesk(r1d18, 18, 1);
+
+    }//GEN-LAST:event_r1d18MouseClicked
+
+    private void r1d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d19MouseClicked
+        chooseDesk(r1d19, 19, 1);
+
+    }//GEN-LAST:event_r1d19MouseClicked
+
+    private void r1d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d20MouseClicked
+        chooseDesk(r1d20, 20, 1);
+    }//GEN-LAST:event_r1d20MouseClicked
+
+    private void r1d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r1d21MouseClicked
+        chooseDesk(r1d21, 21, 1);
+    }//GEN-LAST:event_r1d21MouseClicked
+
+    private void r2d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d7MouseClicked
+        chooseDesk(r2d7, 7, 2);
+
+    }//GEN-LAST:event_r2d7MouseClicked
+
+    private void r2d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d5MouseClicked
+        chooseDesk(r2d5, 5, 2);
+
+    }//GEN-LAST:event_r2d5MouseClicked
+
+    private void r2d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d4MouseClicked
+        chooseDesk(r2d4, 4, 2);
+
+    }//GEN-LAST:event_r2d4MouseClicked
+
+    private void r2d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d3MouseClicked
+        chooseDesk(r2d3, 3, 2);
+
+    }//GEN-LAST:event_r2d3MouseClicked
+
+    private void r2d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d1MouseClicked
+        chooseDesk(r2d1, 1, 2);
+
+    }//GEN-LAST:event_r2d1MouseClicked
+
+    private void r2d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d6MouseClicked
+        chooseDesk(r2d6, 6, 2);
+
+    }//GEN-LAST:event_r2d6MouseClicked
+
+    private void r2d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d2MouseClicked
+        chooseDesk(r2d2, 2, 2);
+    }//GEN-LAST:event_r2d2MouseClicked
+
+    private void r2d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d14MouseClicked
+        chooseDesk(r2d14, 14, 2);
+
+    }//GEN-LAST:event_r2d14MouseClicked
+
+    private void r2d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d8MouseClicked
+        chooseDesk(r2d8, 8, 2);
+
+    }//GEN-LAST:event_r2d8MouseClicked
+
+    private void r2d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d10MouseClicked
+        chooseDesk(r2d10, 10, 2);
+
+    }//GEN-LAST:event_r2d10MouseClicked
+
+    private void r2d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d11MouseClicked
+        chooseDesk(r2d11, 11, 2);
+
+    }//GEN-LAST:event_r2d11MouseClicked
+
+    private void r2d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d13MouseClicked
+        chooseDesk(r2d13, 13, 2);
+
+    }//GEN-LAST:event_r2d13MouseClicked
+
+    private void r2d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d12MouseClicked
+        chooseDesk(r2d12, 12, 2);
+
+    }//GEN-LAST:event_r2d12MouseClicked
+
+    private void r2d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d9MouseClicked
+        chooseDesk(r2d9, 9, 2);
+
+    }//GEN-LAST:event_r2d9MouseClicked
+
+    private void r2d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d15MouseClicked
+        chooseDesk(r2d15, 15, 2);
+
+    }//GEN-LAST:event_r2d15MouseClicked
+
+    private void r2d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d16MouseClicked
+        chooseDesk(r2d16, 16, 2);
+
+    }//GEN-LAST:event_r2d16MouseClicked
+
+    private void r2d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d17MouseClicked
+        chooseDesk(r2d17, 17, 2);
+    }//GEN-LAST:event_r2d17MouseClicked
+
+    private void r2d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d18MouseClicked
+        chooseDesk(r2d18, 18, 2);
+
+    }//GEN-LAST:event_r2d18MouseClicked
+
+    private void r2d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d19MouseClicked
+        chooseDesk(r2d19, 19, 2);
+    }//GEN-LAST:event_r2d19MouseClicked
+
+    private void r2d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d20MouseClicked
+        chooseDesk(r2d20, 20, 2);
+
+    }//GEN-LAST:event_r2d20MouseClicked
+
+    private void r2d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r2d21MouseClicked
+        chooseDesk(r2d21, 21, 2);
+
+    }//GEN-LAST:event_r2d21MouseClicked
+
+    private void r3d7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d7MouseClicked
+        chooseDesk(r3d7, 7, 3);
+
+    }//GEN-LAST:event_r3d7MouseClicked
+
+    private void r3d5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d5MouseClicked
+        chooseDesk(r3d5, 5, 3);
+
+    }//GEN-LAST:event_r3d5MouseClicked
+
+    private void r3d4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d4MouseClicked
+
+        chooseDesk(r3d4, 4, 3);
+    }//GEN-LAST:event_r3d4MouseClicked
+
+    private void r3d3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d3MouseClicked
+        chooseDesk(r3d3, 3, 3);
+
+    }//GEN-LAST:event_r3d3MouseClicked
+
+    private void r3d1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d1MouseClicked
+        chooseDesk(r3d1, 1, 3);
+
+    }//GEN-LAST:event_r3d1MouseClicked
+
+    private void r3d6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d6MouseClicked
+        chooseDesk(r3d6, 6, 3);
+
+    }//GEN-LAST:event_r3d6MouseClicked
+
+    private void r3d2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d2MouseClicked
+        chooseDesk(r3d2, 2, 3);
+
+    }//GEN-LAST:event_r3d2MouseClicked
+
+    private void r3d14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d14MouseClicked
+        chooseDesk(r3d14, 14, 3);
+
+    }//GEN-LAST:event_r3d14MouseClicked
+
+    private void r3d8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d8MouseClicked
+        chooseDesk(r3d8, 8, 3);
+
+    }//GEN-LAST:event_r3d8MouseClicked
+
+    private void r3d10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d10MouseClicked
+        chooseDesk(r3d10, 10, 3);
+    }//GEN-LAST:event_r3d10MouseClicked
+
+    private void r3d11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d11MouseClicked
+        chooseDesk(r3d11, 11, 3);
+    }//GEN-LAST:event_r3d11MouseClicked
+
+    private void r3d13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d13MouseClicked
+        chooseDesk(r3d13, 13, 3);
+
+    }//GEN-LAST:event_r3d13MouseClicked
+
+    private void r3d12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d12MouseClicked
+        chooseDesk(r3d12, 12, 3);
+
+    }//GEN-LAST:event_r3d12MouseClicked
+
+    private void r3d9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d9MouseClicked
+        chooseDesk(r3d9, 9, 3);
+
+    }//GEN-LAST:event_r3d9MouseClicked
+
+    private void r3d15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d15MouseClicked
+        chooseDesk(r3d15, 15, 3);
+
+    }//GEN-LAST:event_r3d15MouseClicked
+
+    private void r3d16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d16MouseClicked
+        chooseDesk(r3d16, 16, 3);
+
+    }//GEN-LAST:event_r3d16MouseClicked
+
+    private void r3d17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d17MouseClicked
+        chooseDesk(r3d17, 17, 3);
+
+    }//GEN-LAST:event_r3d17MouseClicked
+
+    private void r3d18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d18MouseClicked
+        chooseDesk(r3d18, 18, 3);
+
+    }//GEN-LAST:event_r3d18MouseClicked
+
+    private void r3d19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d19MouseClicked
+        chooseDesk(r3d19, 19, 3);
+
+    }//GEN-LAST:event_r3d19MouseClicked
+
+    private void r3d20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d20MouseClicked
+        chooseDesk(r3d20, 20, 3);
+
+    }//GEN-LAST:event_r3d20MouseClicked
+
+    private void r3d21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_r3d21MouseClicked
+        chooseDesk(r3d21, 21, 3);
+    }//GEN-LAST:event_r3d21MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(menubackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(menubackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(menubackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(menubackup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Menu(email).setVisible(true);
-
+                new menubackup(email).setVisible(true);
             }
         });
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel approveButton;
@@ -3996,7 +3856,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel room_header;
     private javax.swing.JLabel room_name;
     private javax.swing.JLabel room_rate;
-    private javax.swing.JLabel room_rate1;
+    private javax.swing.JLabel room_rate_base;
     private javax.swing.JPanel seat;
     private javax.swing.JPanel seatPage;
     private javax.swing.JLabel seatTitle;

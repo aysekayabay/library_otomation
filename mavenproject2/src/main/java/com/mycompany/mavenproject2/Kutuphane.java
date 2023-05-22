@@ -21,7 +21,7 @@ public class Kutuphane {
 	public Kutuphane() {
 
 		for(int i=0; i<roomNumber; i++) {
-			room[i] = new Room(""+i+"", 0, 3);
+//			room[i] = new Room(""+i+"", 0, 3);
 			System.out.println("ODA OLUSTU");
 		}
 		
@@ -180,7 +180,7 @@ public class Kutuphane {
 		}else {
 			room[i].setCurrent_num(room[i].getCurrent_num()-1);
 			room[i].desk[j].setAvailable(true);
-			room[i].desk[j].setOwnerId("-1");
+//			room[i].desk[j].setOwnerId("-1");
 			System.out.println(room[i].desk[j]);
 		}
 		
