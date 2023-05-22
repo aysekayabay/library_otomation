@@ -109,6 +109,9 @@ public class Menu extends javax.swing.JFrame {
     }
 
     public void setUpdates() {
+        if (!breakInProgress) {
+            jLabel7.setEnabled(false);
+        }
         int userCount = 0;
         int deskCount = 0;
         Document userDocument = null;
@@ -195,6 +198,9 @@ public class Menu extends javax.swing.JFrame {
             }
         }
 
+        System.out.println("fsdfasd");
+        System.out.println(rooms);
+        System.out.println(myUser);
         paintFullDesks(rooms);
         if (myUser.getDesk() == -1) {
             leaveDesk.setEnabled(false);
@@ -856,8 +862,8 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selected_desk, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(room_headerLayout.createSequentialGroup()
-                        .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(room_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(selected_room, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -884,11 +890,11 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(room2Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(room1Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, room_headerLayout.createSequentialGroup()
                         .addGroup(room_headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(room_name, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(room_name)
                             .addComponent(selected_room)
                             .addComponent(jLabel43))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3577,6 +3583,8 @@ public class Menu extends javax.swing.JFrame {
             // Mola al - 15 dakikalık timer oluştur
             int break_left = myUser.getBreak_left();
             String name = myUser.getName();
+            jLabel7.setEnabled(true);
+
             if (break_left > 0) {
                 breakInProgress = true;
                 // Disable the "Mola başlat" button
@@ -3735,10 +3743,12 @@ public class Menu extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         breakInProgress = false;
-        jLabel5.setEnabled(!breakInProgress);
-        timer.stop();
-        System.out.println("Timer stopped.");
-
+        if (breakInProgress) {
+            jLabel5.setEnabled(!breakInProgress);
+            timer.stop();
+            System.out.println("Timer stopped.");
+            jLabel7.setEnabled(false);
+        }
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void leaveDeskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveDeskActionPerformed

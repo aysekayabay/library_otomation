@@ -23,6 +23,7 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javafx.scene.transform.MatrixType;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -181,7 +182,10 @@ public class menubackup extends javax.swing.JFrame {
                 roomIndex++;
             }
         }
-
+        
+        System.out.println("fsdfasd");
+        System.out.println(rooms);
+        System.out.println(myUser);
         paintFullDesks(rooms);
         if (myUser.getDesk() == -1) {
             leaveDesk.setEnabled(false);
