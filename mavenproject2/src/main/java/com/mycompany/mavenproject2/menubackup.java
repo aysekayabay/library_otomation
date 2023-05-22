@@ -3102,7 +3102,7 @@ public class menubackup extends javax.swing.JFrame {
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         this.setVisible(false);
-        Login loginFrame = new Login();
+        Main loginFrame = new Main();
         loginFrame.setVisible(true);
     }//GEN-LAST:event_logOutButtonActionPerformed
 

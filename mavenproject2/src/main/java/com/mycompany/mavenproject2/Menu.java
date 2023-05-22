@@ -3210,7 +3210,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
         this.setVisible(false);
-        Login loginFrame = new Login();
+        Main loginFrame = new Main();
         loginFrame.setVisible(true);
     }//GEN-LAST:event_logOutButtonActionPerformed
 
@@ -3793,7 +3793,7 @@ public class Menu extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         breakInProgress = false;
-        if (breakInProgress) {
+        if (!breakInProgress) {
             jLabel5.setEnabled(!breakInProgress);
             timer.stop();
             System.out.println("Timer stopped.");

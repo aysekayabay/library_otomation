@@ -1,6 +1,6 @@
 package com.raven.component;
 
-import com.mycompany.mavenproject2.Login;
+import com.mycompany.mavenproject2.Main;
 import com.mongodb.ConnectionString;
 import com.raven.swing.Button;
 import com.raven.swing.MyPasswordField;
@@ -27,6 +27,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private JLabel warningLabel;
     private Timer timer;
     private int delay = 5000;
+    private JLabel description;
+    private JLabel description2;
 //ibrahim2001sahin@hotmail.com
 //ibrahimU123
 
@@ -60,7 +62,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
             // Belgeyi collection'a ekleyin
             collection.insertOne(document);
-
+            mongoClient.close();
             System.out.println("Veriler MongoDB'ye kaydedildi.");
         } catch (Exception e) {
             System.err.println("MongoDB'ye veri kaydedilirken bir hata oluştu: " + e.getMessage());
@@ -89,13 +91,14 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
             // Find the user document
             Document user = collection.find(query).first();
-
+            mongoClient.close();
             if (user != null) {
                 System.out.println("User found: " + user.toJson());
                 return 1;
             } else {
                 warningLabel.setText("Invalid email or password. Please try again.");
                 timer.restart();
+                
                 return 0;
             }
         } catch (Exception e) {
@@ -105,7 +108,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         }
     }
 
-    public PanelLoginAndRegister(ActionListener eventRegister, Login loginFrame) {
+    public PanelLoginAndRegister(ActionListener eventRegister, Main loginFrame) {
         initComponents();
         initRegister(eventRegister);
         initLogin(loginFrame);
@@ -114,10 +117,10 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     }
 
     private void initRegister(ActionListener eventRegister) {
-        register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
+        register.setLayout(new MigLayout("wrap", "push[center]push", "push[]10[]10[]10[]10[]0[]0[]push"));
         JLabel label = new JLabel("Kayıt ol");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(207, 48, 190));
+        label.setForeground(new Color(153, 0, 255));
         register.add(label);
 
         MyTextField txtUser = new MyTextField();
@@ -139,13 +142,21 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         //txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
         txtPass.setHint("Şifre");
         register.add(txtPass, "w 60%");
+        
+        description = new JLabel("Kayıt ol butonuna basarak kullanım");
+        description.setForeground(new Color(52, 40, 50));
+        register.add(description);
+        
+        description2 = new JLabel("koşullarımızı kabul etmiş olursunuz.");
+        description2.setForeground(new Color(52, 40, 50));
+        register.add(description2);
 
         Button cmd = new Button();
-        cmd.setBackground(new Color(207, 48, 190));
+        cmd.setBackground(new Color(153, 0, 255));
         cmd.setForeground(new Color(250, 250, 250));
         cmd.addActionListener(eventRegister);
         cmd.setText("KAYIT OL");
-        register.add(cmd, "w 40%, h 40");
+        register.add(cmd, "w 20%, h 60");
 
         cmd.addActionListener(event -> {
             String name = txtUser.getText();
@@ -160,7 +171,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         });
     }
 
-    private void initLogin(Login loginFrame) {
+    private void initLogin(Main loginFrame) {
         warningLabel = new JLabel();
         warningLabel.setForeground(Color.RED);
         warningLabel.setFont(new Font("sansserif", Font.PLAIN, 12));
@@ -174,7 +185,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Giriş Yap");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(184, 54, 170));
+        label.setForeground(new Color(153, 0, 255));
         login.add(label);
 
         MyTextField txtEmail = new MyTextField();
@@ -194,7 +205,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmdForget.setCursor(new Cursor(Cursor.HAND_CURSOR));
         login.add(cmdForget);
         Button cmd = new Button();
-        cmd.setBackground(new Color(207, 48, 190));
+        cmd.setBackground(new Color(153, 0, 255));
         cmd.setForeground(new Color(250, 250, 250));
         cmd.setText("Giriş Yap");
         login.add(cmd, "w 40%, h 40");
