@@ -3,6 +3,7 @@ package com.mycompany.mavenproject2;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
@@ -34,6 +35,7 @@ import org.bson.types.ObjectId;
  */
 public class Menu extends javax.swing.JFrame {
 
+    static ArrayList<ObjectId> lineMembers;
     static ArrayList<Component> allDeskWhichIsNotFull;
     private boolean breakInProgress = false;
     private JLabel warningLabel;
@@ -107,6 +109,17 @@ public class Menu extends javax.swing.JFrame {
         setUpdates();
 
     }
+// MongoCollection<Document> lineCollection = database.getCollection("line");
+//            lineMembers = new ArrayList<>();
+//            Document document = lineCollection.find().first();
+//            List<ObjectId> lineMembersList = (List<ObjectId>) document.get("lineMembers");
+//            lineMembers = new ArrayList<>();
+//            // Belgeyi çekin ve ArrayList'e ekle
+//            for (ObjectId memberId : lineMembersList) {
+//                // Her bir memberId için gereken işlemleri yapabilirsiniz
+//                lineMembers.add(memberId);
+//            }
+//            lineCount.setText(String.valueOf(lineMembersList.size()));
 
     public void setUpdates() {
         if (!breakInProgress) {
@@ -197,7 +210,14 @@ public class Menu extends javax.swing.JFrame {
                 roomIndex++;
             }
         }
+        if (Integer.parseInt(rateLabel.getText()) != 100) {
+            getInLineButton.setVisible(false);
 
+        }
+        if (Integer.parseInt(rateLabel.getText()) == 100 && myUser.getDesk() != -1) {
+            getInLineButton.setVisible(false);
+
+        }
         System.out.println("fsdfasd");
         System.out.println(rooms);
         System.out.println(myUser);
@@ -219,8 +239,6 @@ public class Menu extends javax.swing.JFrame {
             if (targetRoom != null) {
                 deskInfo.setText("Masa No: " + String.valueOf(myUser.getDesk()));
                 roomInfo.setText("Oda Adı: " + targetRoom.getName());
-            } else {
-                // Belirtilen oda numarasına sahip bir oda bulunamadı, uygun hata mesajını işleyin
             }
 
         }
@@ -295,6 +313,9 @@ public class Menu extends javax.swing.JFrame {
         leaveDesk = new javax.swing.JButton();
         roomInfo = new javax.swing.JLabel();
         deskInfo = new javax.swing.JLabel();
+        getInLineButton = new javax.swing.JButton();
+        rateTitle1 = new javax.swing.JLabel();
+        lineCount = new javax.swing.JLabel();
         seatPage = new javax.swing.JPanel();
         room_header = new javax.swing.JPanel();
         room_name = new javax.swing.JLabel();
@@ -632,6 +653,25 @@ public class Menu extends javax.swing.JFrame {
 
         deskInfo.setText(" ");
 
+        getInLineButton.setBackground(new java.awt.Color(153, 0, 255));
+        getInLineButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        getInLineButton.setForeground(new java.awt.Color(255, 255, 255));
+        getInLineButton.setText("Sıraya Gir");
+        getInLineButton.setAutoscrolls(true);
+        getInLineButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getInLineButton.setFocusPainted(false);
+        getInLineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getInLineButtonActionPerformed(evt);
+            }
+        });
+
+        rateTitle1.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        rateTitle1.setText("Sırada Bekleyen Kişi Sayısı:");
+
+        lineCount.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        lineCount.setText("0");
+
         javax.swing.GroupLayout homePageLayout = new javax.swing.GroupLayout(homePage);
         homePage.setLayout(homePageLayout);
         homePageLayout.setHorizontalGroup(
@@ -651,17 +691,24 @@ public class Menu extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(homePageLayout.createSequentialGroup()
-                                        .addComponent(leaveDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(homePageLayout.createSequentialGroup()
                                         .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(rateTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(rateBar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(rateBar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(homePageLayout.createSequentialGroup()
+                                                .addComponent(rateTitle1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(lineCount, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(rate)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rateLabel)))))
+                                        .addComponent(rateLabel))
+                                    .addGroup(homePageLayout.createSequentialGroup()
+                                        .addComponent(getInLineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(leaveDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(24, 24, 24))
                     .addGroup(homePageLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -678,7 +725,8 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(leaveDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(leaveDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(getInLineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(welcomeTitle)
@@ -689,7 +737,11 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(roomInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deskInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rateTitle1)
+                    .addComponent(lineCount))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(homePageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, homePageLayout.createSequentialGroup()
                         .addComponent(rateTitle)
@@ -3695,7 +3747,8 @@ public class Menu extends javax.swing.JFrame {
                             i++;
 
                         }
-
+                        room1ButtonMouseClicked(evt);
+                        room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
                         if (deskCount != 0) {
                             int realRate = 0;
                             realRate = 100 * userCount / deskCount;
@@ -3765,7 +3818,6 @@ public class Menu extends javax.swing.JFrame {
             UpdateResult updateResult = roomsCollection.updateOne(query, update2);
             myUser.setDesk(-1);
             myUser.setRoom(-1);
-            JOptionPane.showMessageDialog(null, "Masadan ayrıldınız! İyi günler...", "WARNING", JOptionPane.PLAIN_MESSAGE);
             roomInfo.setText("Henüz masa seçilmedi");
             deskInfo.setText("");
             leaveDesk.setEnabled(false);
@@ -3804,7 +3856,16 @@ public class Menu extends javax.swing.JFrame {
                 rateBar.setValue(Integer.parseInt(libraryRate.toString()));
 
             }
-
+            JOptionPane.showMessageDialog(null, "Masadan ayrıldınız! İyi günler...", "WARNING", JOptionPane.PLAIN_MESSAGE);
+            room2Button.setBackground(roomBaseColor);
+            room1Button.setBackground(roomFilledColor);
+            seat_area1.setVisible(true);
+            seat_area2.setVisible(false);
+            seat_area3.setVisible(false);
+            room_name.setText(rooms[0].getName());
+            room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
+            room3Button.setBackground(roomBaseColor);
+            room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
             int roomIndex = 1;
             int deskIndex = 1;
             allDeskWhichIsNotFull.clear();
@@ -3823,6 +3884,23 @@ public class Menu extends javax.swing.JFrame {
             paintFullDesks(rooms);
         }
     }//GEN-LAST:event_leaveDeskActionPerformed
+
+    private void getInLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInLineButtonActionPerformed
+        if (!lineMembers.contains(myUser.getId())) {
+            lineMembers.add(myUser.getId());
+            JOptionPane.showMessageDialog(null, "Sıraya Girildi!");
+            try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
+                MongoDatabase database = mongoClient.getDatabase("Library");
+                MongoCollection<Document> lineCollection = database.getCollection("line");
+                // LineMembers dizisine ObjectId ekle
+                Document updateDocument = new Document("$push", new Document("lineMembers", myUser.getId()));
+                lineCollection.updateOne(new Document(), updateDocument);
+                lineCount.setText(String.valueOf(Integer.parseInt(lineCount.getText()) + 1));
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Zaten sıradasınız!");
+        }
+    }//GEN-LAST:event_getInLineButtonActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -3843,6 +3921,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel deskInfo;
     private javax.swing.JPanel door1;
     private javax.swing.JPanel endBreakButton;
+    private javax.swing.JButton getInLineButton;
     private javax.swing.JPanel home;
     private javax.swing.JPanel homePage;
     private javax.swing.JLabel homeTitle;
@@ -3927,6 +4006,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton leaveDesk;
     private javax.swing.JPanel leftbar;
     private javax.swing.JPanel line;
+    private javax.swing.JLabel lineCount;
     private javax.swing.JButton logOutButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JPanel page;
@@ -3997,6 +4077,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JProgressBar rateBar;
     private javax.swing.JLabel rateLabel;
     private javax.swing.JLabel rateTitle;
+    private javax.swing.JLabel rateTitle1;
     private javax.swing.JLabel remaining_break_count_label;
     private javax.swing.JPanel room;
     private javax.swing.JPanel room1Button;

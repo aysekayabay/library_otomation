@@ -24,11 +24,15 @@ public class push {
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
             MongoCollection<Document> roomsCollection = database.getCollection("rooms");
+            // Collection'ı seçin
+            MongoCollection<Document> collection = database.getCollection("rooms");
+
+            // Room objesini oluşturun
             Document roomDocument = new Document("_id", new ObjectId())
-                    .append("room_no", 1)
+                    .append("room_no", 2)
                     .append("current_num", 0)
                     .append("desk_num", 21)
-                    .append("name", "Kuzguncuk Salonu");
+                    .append("name", "Davo");
 
             // Desks listesini oluşturun
             List<Document> desks = new ArrayList<>();
@@ -41,7 +45,7 @@ public class push {
             roomDocument.append("desks", desks);
 
             // Belgeyi collection'a ekle
-            roomsCollection.insertOne(roomDocument);
+            collection.insertOne(roomDocument);
 
             // MongoDB istemcisini kapat
             mongoClient.close();
