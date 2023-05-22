@@ -3820,6 +3820,8 @@ public class Menu extends javax.swing.JFrame {
             myUser.setRoom(-1);
             roomInfo.setText("Henüz masa seçilmedi");
             deskInfo.setText("");
+            selected_desk.setText("");
+            selected_room.setText("");
             leaveDesk.setEnabled(false);
             int i = 0;
             int userCount = 0;
@@ -3868,6 +3870,8 @@ public class Menu extends javax.swing.JFrame {
             room_rate.setText(String.valueOf(rooms[0].getCurrent_num()));
             int roomIndex = 1;
             int deskIndex = 1;
+            setAllBackgroundColors(deskBaseColor);
+
             allDeskWhichIsNotFull.clear();
             Component[] components = {r1d1, r1d2, r1d3, r1d4, r1d5, r1d6, r1d7, r1d8, r1d9, r1d10, r1d11, r1d12, r1d13, r1d14, r1d15, r1d16, r1d17, r1d18, r1d19, r1d20, r1d21, r2d1, r2d2, r2d3, r2d4, r2d5, r2d6, r2d7, r2d8, r2d9, r2d10, r2d11, r2d12, r2d13, r2d14, r2d15, r2d16, r2d17, r2d18, r2d19, r2d20, r2d21, r3d1, r3d2, r3d3, r3d4, r3d5, r3d6, r3d7, r3d8, r3d9, r3d10, r3d11, r3d12, r3d13, r3d14, r3d15, r3d16, r3d17, r3d18, r3d19, r3d20, r3d21};
             for (Component component : components) {
@@ -3880,7 +3884,6 @@ public class Menu extends javax.swing.JFrame {
                     roomIndex++;
                 }
             }
-
             paintFullDesks(rooms);
         }
     }//GEN-LAST:event_leaveDeskActionPerformed
