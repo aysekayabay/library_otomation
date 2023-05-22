@@ -29,18 +29,26 @@ public class push {
 
             // Room objesini oluşturun
             Document roomDocument = new Document("_id", new ObjectId())
-                    .append("room_no", 2)
-                    .append("current_num", 0)
+                    .append("room_no", 3)
+                    .append("current_num", 20)
                     .append("desk_num", 21)
-                    .append("name", "Davo");
+                    .append("name", "Cevo");
 
             // Desks listesini oluşturun
             List<Document> desks = new ArrayList<>();
             for (int i = 1; i <= 21; i++) {
-                Document desk = new Document("deskNo", i)
-                        .append("isAvailable", true)
-                        .append("ownerId", "");
-                desks.add(desk);
+                if (i == 1) {
+                    Document desk = new Document("deskNo", i)
+                            .append("isAvailable", true)
+                            .append("ownerId", "");
+                    desks.add(desk);
+                } else {
+                    Document desk = new Document("deskNo", i)
+                            .append("isAvailable", false)
+                            .append("ownerId", new ObjectId());
+                    desks.add(desk);
+                }
+
             }
             roomDocument.append("desks", desks);
 

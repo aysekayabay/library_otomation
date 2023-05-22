@@ -109,17 +109,6 @@ public class Menu extends javax.swing.JFrame {
         setUpdates();
 
     }
-// MongoCollection<Document> lineCollection = database.getCollection("line");
-//            lineMembers = new ArrayList<>();
-//            Document document = lineCollection.find().first();
-//            List<ObjectId> lineMembersList = (List<ObjectId>) document.get("lineMembers");
-//            lineMembers = new ArrayList<>();
-//            // Belgeyi çekin ve ArrayList'e ekle
-//            for (ObjectId memberId : lineMembersList) {
-//                // Her bir memberId için gereken işlemleri yapabilirsiniz
-//                lineMembers.add(memberId);
-//            }
-//            lineCount.setText(String.valueOf(lineMembersList.size()));
 
     public void setUpdates() {
         if (!breakInProgress) {
@@ -130,6 +119,14 @@ public class Menu extends javax.swing.JFrame {
         Document userDocument = null;
         try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
             MongoDatabase database = mongoClient.getDatabase("Library");
+            MongoCollection<Document> lineCollection = database.getCollection("line");
+            lineMembers = new ArrayList<>();
+            Document document = lineCollection.find().first();
+            List<ObjectId> lineMembersList = (List<ObjectId>) document.get("lineMembers");
+            for (ObjectId memberId : lineMembersList) {
+                lineMembers.add(memberId);
+            }
+            lineCount.setText(String.valueOf(lineMembersList.size()));
             MongoCollection<Document> usersCollection = database.getCollection("users");
             userDocument = usersCollection.find(Filters.eq("email", email)).first();
             if (userDocument != null) {
@@ -3890,15 +3887,15 @@ public class Menu extends javax.swing.JFrame {
 
     private void getInLineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInLineButtonActionPerformed
         if (!lineMembers.contains(myUser.getId())) {
-            lineMembers.add(myUser.getId());
-            JOptionPane.showMessageDialog(null, "Sıraya Girildi!");
             try (MongoClient mongoClient = MongoClients.create("mongodb+srv://Ibrahim:ibrahimU123@cluster0.y3msch8.mongodb.net/Registered?retryWrites=true&w=majority")) {
                 MongoDatabase database = mongoClient.getDatabase("Library");
                 MongoCollection<Document> lineCollection = database.getCollection("line");
-                // LineMembers dizisine ObjectId ekle
+                lineMembers.add(myUser.getId());
+                myUser.setLine(lineMembers.size()+1);
                 Document updateDocument = new Document("$push", new Document("lineMembers", myUser.getId()));
                 lineCollection.updateOne(new Document(), updateDocument);
                 lineCount.setText(String.valueOf(Integer.parseInt(lineCount.getText()) + 1));
+                JOptionPane.showMessageDialog(null, "Sıraya Girildi! Sıra numaranız: " + myUser.getLine() );
             }
         } else {
             JOptionPane.showMessageDialog(null, "Zaten sıradasınız!");
