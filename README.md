@@ -13,3 +13,4 @@ BLM2042 - System Analysis and Design Java Project
 3-)Mola düzenleme modülü\
 4-)Kütüphane doluluk oranı modülü\
 5-)Kütüphane ceza modülü
+[Sistem Analizi ve Tasarımı Raporu (1).pdf](https://github.com/aysekayabay/library_otomation/files/12217988/Sistem.Analizi.ve.Tasarimi.Raporu.1.pdf)
