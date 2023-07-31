@@ -5,6 +5,7 @@ BLM2042 - System Analysis and Design Java Project
 ## Team Members 
 * [Ayşe Kayabay](https://github.com/aysekayabay)
 * [Ezgi Sevi](https://github.com/ecisev16)
+* [İbrahim Şahin](https://github.com/balanceton)
 
 #Moduls\
 1-)Kütüphaneye kayıt, giriş, çıkış modülü\
